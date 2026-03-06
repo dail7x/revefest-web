@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "MARÍA BECERRA",
+        "slug": "maria-becerra",
+        "isHeadliner": true,
+        "order": 1,
+        "bio": "María Becerra, conocida como 'La Nena de Argentina', es la artista pop urbana más importante de su generación. Con éxitos globales y colaboraciones internacionales, lidera el cartel de REVEFEST 2026 con un show sin precedentes.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/1DxLCyH42yaHKGK3cl5bvG?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/XPB0tmb5Yj4?si=ie5N4CQv1Rua5Low",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_MARIA_REVEFEST.webp",
+            "hero": "/images/artists/Hero/Maria_Becerra_Hero.png",
+            "pagina": "/images/artists/Pagina/Maria_Becerra_Foto_Web_artista.webp"
+        }
+    },
+    {
+        "id": 2,
+        "name": "RVFV",
+        "slug": "rvfv",
+        "isHeadliner": true,
+        "order": 2,
+        "bio": "Desde Almería para el mundo, RVFV ha revolucionado la escena urbana con su estilo único que mezcla reggaetón, trap y sonidos africanos. Sus directos son pura energía y baile asegurado.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/2CCgb0KApjfQDuTppovpf8?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/5WH7wujS75s?si=w43MnYERhohMI497",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_RVFV_REVEFEST.webp",
+            "hero": "/images/artists/Hero/RVFV_Hero.png",
+            "pagina": "/images/artists/Pagina/RVFV_Foto_Web_artista.webp"
+        }
+    },
+    {
+        "id": 3,
+        "name": "LA ZOWI",
+        "slug": "la-zowi",
+        "isHeadliner": true,
+        "order": 3,
+        "bio": "La reina del trap en España. La Zowi trae a REVEFEST su estética cruda y sus letras directas que han definido una era en el género urbano nacional.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/1jB62pOe5WpGiHOBDtKBBG?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/k1E19aciO9k?si=9qWdd0oJic4UUJLm",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_zowi_REVEFEST.webp",
+            "hero": "/images/artists/Hero/La_Zowi_Hero.png",
+            "pagina": "/images/artists/Pagina/La_Zowi_Foto_Web_artista.webp"
+        }
+    },
+    {
+        "id": 4,
+        "name": "KIDD VOODOO",
+        "slug": "kidd-voodoo",
+        "isHeadliner": true,
+        "order": 4,
+        "bio": "La nueva sensación del reggaetón chileno. Kidd Voodoo llega por primera vez a nuestro escenario para demostrar por qué es uno de los artistas con mayor crecimiento en el último año.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/10VBp06W8NIgMW4JruLCC4?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/l_oB3L5LtHM?si=c9x9iWYKGOiVZ1lw",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_KIDD_REVEFEST.webp",
+            "hero": "/images/artists/Hero/Kid_Voodoo_Hero.png",
+            "pagina": "/images/artists/Pagina/Kid_Voodoo_Foto_Web_artista.webp"
+        }
+    },
+    {
+        "id": 5,
+        "name": "LORNA",
+        "slug": "lorna",
+        "isHeadliner": true,
+        "order": 5,
+        "bio": "Leyenda del reggaetón panameño. La intérprete del himno generacional 'Papi Chulo' pondrá el toque clásico y el perreo old school en el Roig Arena.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/2kFBKRwutklbaGSKBpc6TS?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/Yx7soZ6TSUc?si=jukIMBkIGlXInZ4Q",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_L0RNA_REVEFEST.webp",
+            "hero": "/images/artists/Hero/Lorna_Hero.png",
+            "pagina": "/images/artists/Pagina/Lorna_Foto_Web_artista.webp"
+        }
+    },
+    {
+        "id": 6,
+        "name": "CMARÍ",
+        "slug": "cmari",
+        "isHeadliner": true,
+        "order": 6,
+        "bio": "Talento emergente con una propuesta fresca y vibrante. Cmarí completa nuestro lineup principal con sonidos que fusionan el pop y la música urbana contemporánea.",
+        "spotifyEmbed": "https://open.spotify.com/embed/artist/7uthE7Fmy5aYOwlu1Yt4Ps?utm_source=generator&theme=0",
+        "youtubeEmbed": "https://www.youtube.com/embed/yC8zw8OKWIs?si=qh_sNkGzzXYtAzN4",
+        "images": {
+            "cartel": "/images/artists/Carteles/Cartel_CMARI_REVEFEST.webp",
+            "hero": "/images/artists/Hero/C_Mari_Hero.png",
+            "pagina": "/images/artists/Pagina/C_Mari_Foto_Web_artista.webp"
+        }
+    }
+]
