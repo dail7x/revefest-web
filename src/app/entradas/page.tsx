@@ -6,6 +6,7 @@ import Image from 'next/image';
 const EntradasPage = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isSticky, setIsSticky] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         // 1. Hash handling
@@ -20,6 +21,25 @@ const EntradasPage = () => {
             script.src = "https://www.fourvenues.com/assets/iframe/revefest/DYLL";
             script.async = true;
             containerRef.current.appendChild(script);
+
+            // 3. Monitor for iframe insertion to hide loader
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'childList') {
+                        const iframe = containerRef.current?.querySelector('iframe');
+                        if (iframe) {
+                            // Give it a tiny bit of extra time to render internal content
+                            setTimeout(() => setIsLoading(false), 500);
+                            observer.disconnect();
+                        }
+                    }
+                }
+            });
+
+            observer.observe(containerRef.current, { childList: true });
+
+            // Cleanup observer if component unmounts
+            return () => observer.disconnect();
         }
 
         // 3. Scroll tracking
@@ -32,6 +52,16 @@ const EntradasPage = () => {
 
     return (
         <main className="min-h-screen bg-white">
+            <style jsx global>{`
+                @keyframes pulse-color {
+                    0%, 100% { color: #1d1d1b; transform: scale(1); }
+                    50% { color: #fc56ae; transform: scale(1.05); }
+                }
+                .logo-pulse {
+                    animation: pulse-color 1.5s ease-in-out infinite;
+                }
+            `}</style>
+
             <div className="container mx-auto px-4 md:px-6">
 
                 {/* 
@@ -62,7 +92,39 @@ const EntradasPage = () => {
                     Main Widget Container
                     Limiting max-width for better desktop look
                 */}
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-4xl mx-auto relative min-h-[600px]">
+
+                    {/* LOADING PLACEHOLDER */}
+                    {isLoading && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 transition-opacity duration-500">
+                            <div className="logo-pulse flex flex-col items-center gap-4">
+                                <svg
+                                    viewBox="0 0 400 100"
+                                    className="w-48 md:w-64 h-auto fill-current"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <text
+                                        x="50%"
+                                        y="50%"
+                                        dominantBaseline="middle"
+                                        textAnchor="middle"
+                                        fontSize="80"
+                                        fontWeight="900"
+                                        fontStyle="italic"
+                                        letterSpacing="-5"
+                                    >
+                                        REVE
+                                    </text>
+                                </svg>
+                                <div className="flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.3s]"></span>
+                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.15s]"></span>
+                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce"></span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     <div
                         id="fourvenues-iframe"
                         ref={containerRef}
