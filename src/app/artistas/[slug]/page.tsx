@@ -1,0 +1,164 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import artistasData from '@/data/artistas.json';
+
+const ArtistaPage = () => {
+    const params = useParams();
+    const router = useRouter();
+    const slug = params?.slug as string;
+    const [isSticky, setIsSticky] = useState(false);
+
+    const artista = artistasData.find((a) => a.slug === slug);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsSticky(window.scrollY > 100);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    if (!artista) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-xl uppercase font-bold text-black">Artista no encontrado</p>
+            </div>
+        );
+    }
+
+    return (
+        <main className="min-h-screen bg-white pb-20">
+            <div className="container mx-auto px-4 md:px-6">
+
+                {/* 
+                    Header Info Section
+                    Reduced padding to match Home Hero start position 
+                */}
+                <div className="flex flex-col gap-4 mb-6">
+
+                    {/* Primary Row: Back Arrow + Lineup + Artist Name + Tickets (Desktop/Mobile) */}
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 md:gap-4">
+                            <button
+                                onClick={() => router.back()}
+                                className="flex items-center justify-center text-black hover:text-primary transition-colors"
+                                aria-label="Volver"
+                            >
+                                <ArrowLeft size={32} strokeWidth={2.5} />
+                            </button>
+                            <h2 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black">Lineup</h2>
+                            <span className="text-primary text-xl md:text-3xl">◆</span>
+                            <span className="text-[20pt] md:text-[28pt] font-light uppercase tracking-tight text-gray-400">{artista.name}</span>
+                        </div>
+
+                        {/* Right side: Tickets Header (Desktop) */}
+                        <div className="hidden md:flex items-center gap-3">
+                            <span className="text-[22pt] font-black uppercase tracking-tighter">Tickets</span>
+                            <span className="text-black text-2xl">◆</span>
+                            <div className="relative w-12 h-6">
+                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Secondary Row (Mobile Tickets Label only) */}
+                    <div className="flex md:hidden items-center justify-end">
+                        <div className="flex items-center gap-3">
+                            <span className="text-[18pt] font-black uppercase tracking-tighter">Tickets</span>
+                            <span className="text-black text-xl">◆</span>
+                            <div className="relative w-10 h-6">
+                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Main CTA: Buy Button (Aligned right in Desktop, hidden when sticky) */}
+                    <div className={`flex justify-center md:justify-end transition-opacity duration-300 ${isSticky ? 'md:opacity-0 md:pointer-events-none' : 'opacity-100'}`}>
+                        <Link
+                            href="/entradas"
+                            className="w-full md:w-auto md:min-w-[320px] bg-primary text-white py-3 md:py-4 px-10 text-center text-sm md:text-base font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                        >
+                            ¡Compra ya desde 18€!
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Main Content Grid */}
+                <div className="flex flex-col gap-8 md:gap-12">
+
+                    {/* Artist Hero Image */}
+                    <div className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-sm overflow-hidden shadow-md">
+                        <Image
+                            src={artista.images.pagina}
+                            alt={artista.name}
+                            fill
+                            className="object-cover"
+                            priority
+                            unoptimized
+                        />
+                    </div>
+
+                    {/* Bio and Media Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+
+                        {/* Column 1: Biography */}
+                        <div className="flex flex-col gap-8">
+                            <div className="text-[14px] md:text-[16px] leading-relaxed text-black font-normal whitespace-pre-wrap">
+                                <strong className="font-bold">{artista.name}</strong> {artista.bio}
+                            </div>
+
+                            {/* CTA Repetition - Aligned with Bio */}
+                            <Link
+                                href="/entradas"
+                                className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all"
+                            >
+                                ¡Compra ya desde 18€!
+                            </Link>
+                        </div>
+
+                        {/* Column 2: Embeds */}
+                        <div className="flex flex-col gap-8">
+                            {/* Spotify Embed */}
+                            {artista.spotifyEmbed && (
+                                <div className="w-full rounded-xl overflow-hidden shadow-sm">
+                                    <iframe
+                                        src={artista.spotifyEmbed}
+                                        width="100%"
+                                        height="152"
+                                        frameBorder="0"
+                                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                        className="rounded-xl"
+                                        loading="lazy"
+                                    ></iframe>
+                                </div>
+                            )}
+
+                            {/* YouTube Embed */}
+                            {artista.youtubeEmbed && (
+                                <div className="w-full aspect-video rounded-xl overflow-hidden shadow-sm bg-black">
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src={artista.youtubeEmbed}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    );
+};
+
+export default ArtistaPage;

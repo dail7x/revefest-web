@@ -1,18 +1,19 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 const EntradasPage = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
-        // 1. Aseguramos el Hash para cargar el mapa directamente
+        // 1. Hash handling
         if (!window.location.hash) {
             window.location.hash = 'events/DYLL';
         }
 
-        // 2. Inyectamos el script oficial en el contenedor con el ID esperado
+        // 2. Script Injection
         if (containerRef.current) {
             containerRef.current.innerHTML = '';
             const script = document.createElement('script');
@@ -20,25 +21,31 @@ const EntradasPage = () => {
             script.async = true;
             containerRef.current.appendChild(script);
         }
+
+        // 3. Scroll tracking
+        const handleScroll = () => {
+            setIsSticky(window.scrollY > 80);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <main className="min-h-screen bg-white">
-            {/* 
-                pt-12 md:pt-4: Reducimos drásticamente el espacio superior. 
-                En desktop casi no hay espacio para que el widget quede centrado.
-            */}
-            <div className="container mx-auto px-4 md:px-6 pt-12 md:pt-4 pb-10">
+            <div className="container mx-auto px-4 md:px-6">
 
-                {/* Title Section: Oculta en Desktop, visible en Mobile */}
-                <div className="md:hidden flex flex-col gap-1 mb-6">
+                {/* 
+                    "Compra" Title Section 
+                    Visible ONLY if NOT Sticky and aligned left with Logo
+                */}
+                <div className={`flex flex-col gap-1 mb-4 transition-opacity duration-300 ${isSticky ? 'opacity-0' : 'opacity-100'}`}>
                     <div className="flex items-center gap-3">
-                        <h1 className="text-[28pt] font-black uppercase tracking-tighter text-black leading-none">
+                        <h1 className="text-[28pt] md:text-[36pt] font-black uppercase tracking-tighter text-black leading-none">
                             Compra
                         </h1>
                         <div className="flex items-center gap-2">
-                            <span className="text-xl text-primary leading-none">◆</span>
-                            <div className="relative w-10 h-6">
+                            <span className="text-xl md:text-3xl text-primary leading-none">◆</span>
+                            <div className="relative w-10 h-6 md:w-14 md:h-8">
                                 <Image
                                     src="/images/Ticket.webp"
                                     alt="Ticket Icon"
@@ -49,27 +56,23 @@ const EntradasPage = () => {
                             </div>
                         </div>
                     </div>
-                    <p className="text-[9pt] font-light uppercase tracking-[0.2em] opacity-80 text-black">
-                        16.07.26 • ROIG ARENA
-                    </p>
                 </div>
 
                 {/* 
-                    Contenedor del Widget: 
-                    Limitamos el max-width en desktop para "reducir el tamaño" visualmente.
+                    Main Widget Container
+                    Limiting max-width for better desktop look
                 */}
                 <div className="max-w-4xl mx-auto">
                     <div
                         id="fourvenues-iframe"
                         ref={containerRef}
-                        className="w-full min-h-[850px] bg-white"
+                        className="w-full min-h-[900px] bg-white"
                     >
-                        {/* El script inyectará el widget aquí */}
                     </div>
                 </div>
 
-                {/* Footer Disclaimer */}
-                <div className="max-w-2xl mx-auto mt-10 text-center text-[9px] md:text-[10px] opacity-30 font-light uppercase tracking-[0.2em] leading-relaxed text-black">
+                {/* Footer Info */}
+                <div className="max-w-2xl mx-auto mt-16 text-center text-[10px] opacity-30 font-light uppercase tracking-[0.2em] leading-relaxed text-black pb-20">
                     <p>
                         AL COMPRAR TU ENTRADA ACEPTAS LAS CONDICIONES GENERALES. <br />
                         CONSULTA LA GUÍA DE COMPRA PARA MÁS INFO.
