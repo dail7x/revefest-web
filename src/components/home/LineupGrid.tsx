@@ -18,7 +18,7 @@ const LineupGrid: React.FC = () => {
                 >
                     <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
                         <Image
-                            src={artista.images.pagina}
+                            src={artista.images.cartel}
                             alt={artista.name}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"

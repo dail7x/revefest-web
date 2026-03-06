@@ -68,8 +68,8 @@ const HeroCarousel: React.FC = () => {
                 </div>
             </div>
 
-            {/* Pagination Dots */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+            {/* Pagination Dots - Below and to the right */}
+            <div className="flex justify-end gap-3 mt-4 pr-6">
                 {headliners.map((_, index) => (
                     <button
                         key={index}

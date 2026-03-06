@@ -47,21 +47,6 @@ const MobileLineupCarousel: React.FC = () => {
             </div>
 
             {/* Grid textual below (fallback/quick list) per FEAT-005 spec */}
-            <div className="px-6 py-8">
-                <h2 className="text-3xl font-bold uppercase mb-4 flex items-center gap-2 italic">
-                    Lineup <span className="text-primary tracking-tighter">◆</span>
-                </h2>
-                <div className="flex flex-wrap gap-2 text-[14pt] font-light leading-none uppercase">
-                    {artists.map((a, i) => (
-                        <React.Fragment key={a.id}>
-                            <Link href={`/artistas/${a.slug}`} className="hover:text-primary transition-colors">
-                                {a.name}
-                            </Link>
-                            {i < artists.length - 1 && <span className="text-foreground/20">|</span>}
-                        </React.Fragment>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 };
