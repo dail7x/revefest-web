@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es">
       <body className="antialiased min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow pt-[80px] sm:pt-[100px]">

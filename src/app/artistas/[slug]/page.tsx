@@ -16,12 +16,13 @@ const ArtistaPage = () => {
     const artista = artistasData.find((a) => a.slug === slug);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const handleScroll = () => {
             setIsSticky(window.scrollY > 100);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [slug]);
 
     if (!artista) {
         return (
