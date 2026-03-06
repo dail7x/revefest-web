@@ -22,6 +22,8 @@ const LineupGrid: React.FC = () => {
                             alt={artista.name}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            priority={artists.indexOf(artista) < 3}
+                            unoptimized
                         />
                         {/* Overlay for aesthetic */}
                         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />

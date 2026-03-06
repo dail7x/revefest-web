@@ -30,6 +30,8 @@ const MobileLineupCarousel: React.FC = () => {
                                         alt={artista.name}
                                         fill
                                         className="object-cover"
+                                        priority={artista.order <= 2}
+                                        unoptimized
                                     />
                                     {/* Fallback label if image is too busy */}
                                     <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent">

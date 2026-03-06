@@ -61,6 +61,7 @@ const HeroCarousel: React.FC = () => {
                                     fill
                                     className="object-cover"
                                     priority={artista.order === 1}
+                                    unoptimized
                                 />
                             </Link>
                         </div>
