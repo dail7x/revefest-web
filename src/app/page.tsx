@@ -22,7 +22,7 @@ export default function Home() {
       <LineupText />
 
       {/* SECCIÓN 4: LINEUP GRID (Desktop Only) - FEAT-007 */}
-      <div className="container mx-auto px-6 pb-24">
+      <div className="container mx-auto px-6 pb-8 md:pb-12">
         <LineupGrid />
       </div>
 

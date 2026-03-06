@@ -14,7 +14,7 @@ const TicketsSection: React.FC = () => {
     const [emblaRef] = useEmblaCarousel({ align: 'start', containScroll: 'trimSnaps' });
 
     return (
-        <section id="tickets" className="py-24 bg-white overflow-hidden">
+        <section id="tickets" className="py-12 md:py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <h2 className="text-4xl md:text-5xl font-bold uppercase mb-12 flex items-center gap-3 italic">
                     Tickets <span className="text-primary tracking-tighter">◆</span>

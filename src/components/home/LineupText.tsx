@@ -9,7 +9,7 @@ const LineupText: React.FC = () => {
 
     return (
         <section id="lineup" className="container mx-auto px-6 py-12 md:py-24">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-16">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-10">
                 <div className="flex flex-col gap-8 flex-grow">
                     <h2 className="text-4xl md:text-5xl font-bold uppercase flex items-center gap-4 italic shrink-0">
                         Lineup <span className="text-primary tracking-tighter">◆</span>
@@ -34,16 +34,16 @@ const LineupText: React.FC = () => {
                     {/* Desktop Button */}
                     <Link
                         href="/guia-de-compra"
-                        className="hidden md:inline-flex bg-black text-white px-8 py-3 text-sm font-bold rounded-sm hover:bg-foreground/80 transition-all w-fit tracking-wider"
+                        className="hidden md:inline-flex bg-black text-white px-8 py-3 text-sm font-bold rounded-sm hover:bg-foreground/80 transition-all w-fit tracking-wider uppercase"
                     >
                         + INFORMACIÓN
                     </Link>
                 </div>
 
-                <div className="flex flex-row flex-wrap md:flex-col gap-4 w-full md:w-auto">
+                <div className="flex flex-row gap-4 w-full md:w-auto mt-6 md:mt-0">
                     <Link
                         href="/entradas"
-                        className="flex-1 md:flex-none bg-primary text-white px-12 py-4 text-xl font-bold rounded-sm hover:bg-foreground transition-all text-center shadow-xl tracking-widest uppercase"
+                        className="flex-1 md:flex-none bg-primary text-white px-8 py-4 text-xl font-bold rounded-sm hover:bg-foreground transition-all text-center shadow-xl tracking-widest uppercase flex items-center justify-center min-h-[64px]"
                     >
                         TICKETS
                     </Link>
@@ -51,7 +51,7 @@ const LineupText: React.FC = () => {
                     {/* Mobile Button */}
                     <Link
                         href="/guia-de-compra"
-                        className="flex-1 md:hidden bg-black text-white px-4 py-4 text-sm font-bold rounded-sm hover:bg-foreground/80 transition-all text-center tracking-wider"
+                        className="flex-1 md:hidden bg-black text-white px-8 py-4 text-xl font-bold rounded-sm hover:bg-foreground/80 transition-all text-center tracking-widest uppercase flex items-center justify-center min-h-[64px]"
                     >
                         + INFO
                     </Link>
