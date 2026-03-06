@@ -109,14 +109,14 @@ const ArtistaPage = () => {
 
                         {/* Column 1: Biography */}
                         <div className="flex flex-col gap-8">
-                            <div className="text-[14px] md:text-[16px] leading-relaxed text-black font-normal whitespace-pre-wrap">
+                            <div className="text-[14px] md:text-[16px] leading-relaxed text-black font-normal whitespace-pre-wrap text-justify">
                                 <strong className="font-bold">{artista.name}</strong> {artista.bio}
                             </div>
 
                             {/* CTA Repetition - Aligned with Bio */}
                             <Link
                                 href="/entradas"
-                                className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all"
+                                className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all text-center md:text-left block"
                             >
                                 ¡Compra ya desde 18€!
                             </Link>
