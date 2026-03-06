@@ -96,30 +96,34 @@ const EntradasPage = () => {
 
                     {/* LOADING PLACEHOLDER */}
                     {isLoading && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 transition-opacity duration-500">
-                            <div className="logo-pulse flex flex-col items-center gap-4">
-                                <svg
-                                    viewBox="0 0 400 100"
-                                    className="w-48 md:w-64 h-auto fill-current"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <text
-                                        x="50%"
-                                        y="50%"
-                                        dominantBaseline="middle"
-                                        textAnchor="middle"
-                                        fontSize="80"
-                                        fontWeight="900"
-                                        fontStyle="italic"
-                                        letterSpacing="-5"
-                                    >
-                                        REVE
-                                    </text>
-                                </svg>
-                                <div className="flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.3s]"></span>
-                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.15s]"></span>
-                                    <span className="w-2 h-2 rounded-full bg-current animate-bounce"></span>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 transition-opacity duration-500 pt-20">
+                            <div className="flex flex-col items-center gap-8">
+                                {/* Pulse Logo with Mask to control color transitions */}
+                                <div className="logo-pulse w-48 md:w-64 h-24 relative">
+                                    <div
+                                        className="absolute inset-0 bg-current"
+                                        style={{
+                                            maskImage: 'url(/images/Logos/LOGO_REVE_SVG.svg)',
+                                            WebkitMaskImage: 'url(/images/Logos/LOGO_REVE_SVG.svg)',
+                                            maskRepeat: 'no-repeat',
+                                            WebkitMaskRepeat: 'no-repeat',
+                                            maskPosition: 'center',
+                                            WebkitMaskPosition: 'center',
+                                            maskSize: 'contain',
+                                            WebkitMaskSize: 'contain'
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="logo-pulse flex flex-col items-center gap-2">
+                                    <div className="text-[10pt] font-black uppercase tracking-[0.3em] italic">
+                                        Cargando
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.3s]"></span>
+                                        <span className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:-0.15s]"></span>
+                                        <span className="w-2 h-2 rounded-full bg-current animate-bounce"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
