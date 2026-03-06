@@ -36,7 +36,10 @@ const TicketsSection: React.FC = () => {
         <section id="tickets" className="py-6 md:py-12 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8 flex items-center gap-3 italic">
-                    Tickets <span className="text-[#fc56ae] tracking-tighter">◆</span> <Ticket className="w-8 h-8 md:w-10 md:h-10 text-black fill-transparent stroke-[2.5px]" />
+                    Tickets <span className="text-[#fc56ae] tracking-tighter">◆</span>
+                    <div className="relative w-8 h-8 md:w-10 md:h-10">
+                        <Image src="/images/Ticket.svg" alt="Ticket Icon" fill className="object-contain" />
+                    </div>
                 </h2>
 
                 {/* Desktop Layout */}
@@ -45,11 +48,13 @@ const TicketsSection: React.FC = () => {
                     <div className="col-span-8 flex gap-6">
                         {tiers.map((tier) => (
                             <div key={tier.name} className="flex-1 border border-gray-200 p-8 flex flex-col min-h-[600px] shadow-sm hover:shadow-md transition-shadow">
-                                <h3 className="text-4xl font-extrabold uppercase text-center mb-6 tracking-tight">
-                                    {tier.title}
-                                </h3>
+                                <div className="h-[80px] flex items-center justify-center mb-4">
+                                    <h3 className="text-2xl md:text-[26pt] font-extrabold uppercase text-center tracking-tighter leading-none">
+                                        {tier.title}
+                                    </h3>
+                                </div>
 
-                                <div className="bg-[#1d1d1b] text-white py-6 px-4 text-center my-4 h-[120px] flex flex-col justify-center items-center">
+                                <div className="bg-[#1d1d1b] text-white py-6 px-4 text-center mb-6 h-[120px] flex flex-col justify-center items-center">
                                     {tier.badge.split('\n').map((line, i) => (
                                         <p key={i} className={`text-lg font-medium ${i === 0 ? 'text-white' : 'text-white/80'}`}>
                                             {line}
@@ -57,7 +62,7 @@ const TicketsSection: React.FC = () => {
                                     ))}
                                 </div>
 
-                                <p className="text-gray-500 font-light text-md leading-relaxed mt-6 mb-8 text-center px-4">
+                                <p className="text-gray-500 font-light text-md leading-relaxed mb-8 text-center px-4 min-h-[80px]">
                                     {tier.description}
                                 </p>
 
@@ -67,7 +72,9 @@ const TicketsSection: React.FC = () => {
                                             <div className="w-3 h-3 rounded-full border border-gray-400 flex items-center justify-center">
                                                 <div className="w-1.5 h-1.5 bg-gray-600 rounded-full" />
                                             </div>
-                                            <Ticket className="w-6 h-6 text-black" />
+                                            <div className="relative w-6 h-6">
+                                                <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                            </div>
                                             <span className="text-xl font-bold">{tier.price}</span>
                                         </div>
                                         <span className="text-lg font-normal text-gray-800 uppercase tracking-tight">
@@ -92,7 +99,7 @@ const TicketsSection: React.FC = () => {
 
                     {/* Map Column */}
                     <div className="col-span-4 border border-transparent">
-                        <h3 className="text-4xl font-extrabold uppercase mb-6 tracking-tight">Guía de asientos</h3>
+                        <h3 className="text-[26pt] font-extrabold uppercase mb-6 tracking-tighter leading-none">Guía de asientos</h3>
 
                         <div className="flex flex-col gap-2 mb-8 text-sm font-medium">
                             <div className="flex items-center gap-2">
@@ -109,7 +116,7 @@ const TicketsSection: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="relative w-full aspect-square">
+                        <Link href="/entradas" className="relative w-full aspect-square block hover:opacity-90 transition-opacity">
                             <Image
                                 src="/images/GuiaAsientos.webp"
                                 alt="Fano Seating Map"
@@ -117,7 +124,7 @@ const TicketsSection: React.FC = () => {
                                 className="object-contain"
                                 unoptimized
                             />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -128,9 +135,11 @@ const TicketsSection: React.FC = () => {
                         <div className="flex gap-4 p-2">
                             {tiers.map((tier) => (
                                 <div key={tier.name} className="flex-[0_0_88%] min-w-0 border border-gray-200 p-6 flex flex-col shadow-sm">
-                                    <h3 className="text-3xl font-extrabold uppercase text-center mb-6 tracking-tight leading-none h-[64px] flex items-center justify-center">
-                                        {tier.title}
-                                    </h3>
+                                    <div className="h-[70px] flex items-center justify-center mb-4">
+                                        <h3 className="text-2xl font-extrabold uppercase text-center tracking-tighter leading-none">
+                                            {tier.title}
+                                        </h3>
+                                    </div>
 
                                     <div className="bg-[#1d1d1b] text-white py-5 px-4 text-center my-4 h-[100px] flex flex-col justify-center items-center">
                                         {tier.badge.split('\n').map((line, i) => (
@@ -149,7 +158,9 @@ const TicketsSection: React.FC = () => {
                                             <div className="w-3 h-3 rounded-full border border-gray-400 flex items-center justify-center">
                                                 <div className="w-1.5 h-1.5 bg-gray-600 rounded-full" />
                                             </div>
-                                            <Ticket className="w-5 h-5 text-black" />
+                                            <div className="relative w-5 h-5">
+                                                <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                            </div>
                                             <span className="text-lg font-bold">{tier.price}</span>
                                         </div>
                                         <span className="text-sm font-normal text-gray-800 uppercase tracking-tight">
@@ -174,7 +185,7 @@ const TicketsSection: React.FC = () => {
 
                     {/* Mobile Map Section */}
                     <div className="border border-gray-200 p-6 shadow-sm">
-                        <h3 className="text-3xl font-extrabold uppercase mb-6 tracking-tight text-center">Guía de asientos</h3>
+                        <h3 className="text-[24pt] font-extrabold uppercase mb-6 tracking-tighter text-center leading-none">Guía de asientos</h3>
 
                         <div className="flex flex-col gap-2 mb-8 text-[11pt] font-medium justify-center pl-4">
                             <div className="flex items-center gap-3">
@@ -191,7 +202,7 @@ const TicketsSection: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="relative w-full aspect-square max-w-[400px] mx-auto">
+                        <Link href="/entradas" className="relative w-full aspect-square max-w-[400px] mx-auto block">
                             <Image
                                 src="/images/GuiaAsientos.webp"
                                 alt="Fano Seating Map"
@@ -199,7 +210,7 @@ const TicketsSection: React.FC = () => {
                                 className="object-contain"
                                 unoptimized
                             />
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

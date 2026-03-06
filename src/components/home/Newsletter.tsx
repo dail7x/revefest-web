@@ -23,7 +23,7 @@ const Newsletter: React.FC = () => {
     return (
         <section className="py-24 bg-foreground text-white overflow-hidden relative">
             {/* Decorative BG element */}
-            <div className="absolute top-0 right-0 text-[15vw] font-bold opacity-5 pointer-events-none select-none uppercase tracking-tighter translate-y-[-20%]">
+            <div className="hidden md:block absolute top-0 right-0 text-[15vw] font-bold opacity-5 pointer-events-none select-none uppercase tracking-tighter translate-y-[-20%]">
                 Newsletter
             </div>
 
