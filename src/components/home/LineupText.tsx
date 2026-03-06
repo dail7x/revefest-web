@@ -8,8 +8,8 @@ const LineupText: React.FC = () => {
     const artists = artistasData.sort((a, b) => a.order - b.order);
 
     return (
-        <section id="lineup" className="container mx-auto px-6 py-12 md:py-24">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-10">
+        <section id="lineup" className="container mx-auto px-6 py-4 md:py-8">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-4">
                 <div className="flex flex-col gap-8 flex-grow">
                     <h2 className="text-4xl md:text-5xl font-bold uppercase flex items-center gap-4 italic shrink-0">
                         Lineup <span className="text-primary tracking-tighter">◆</span>
