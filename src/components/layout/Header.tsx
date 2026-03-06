@@ -7,6 +7,22 @@ import { Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from './MobileMenu';
 
+const Marker = ({ className }: { className: string }) => (
+    <span className={`absolute text-[6px] text-foreground leading-none ${className}`}>◆</span>
+);
+
+const BoxedInfo = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+    <div className={`relative px-4 py-1.5 min-w-fit ${className}`}>
+        <Marker className="top-0 left-0 -translate-x-1/2 -translate-y-1/2" />
+        <Marker className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
+        <Marker className="bottom-0 left-0 -translate-x-1/2 translate-y-1/2" />
+        <Marker className="bottom-0 right-0 translate-x-1/2 translate-y-1/2" />
+        <div className="flex flex-col text-[8.5pt] font-bold leading-tight uppercase">
+            {children}
+        </div>
+    </div>
+);
+
 const Header: React.FC = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,91 +38,83 @@ const Header: React.FC = () => {
 
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isSticky ? 'bg-white/80 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-4 sm:py-6'
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isSticky ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4 sm:py-6'
                 }`}
         >
-            <div className="container mx-auto px-6 flex items-center justify-between">
+            <div className="container mx-auto px-4 md:px-6 flex items-center">
 
-                {/* Left Side: Logo & Info (Desktop) */}
-                <div className="flex items-center gap-8">
-                    <Link href="/" className="relative w-28 h-14 sm:w-32 sm:h-16">
-                        <Image
-                            src="/images/Logos/LOGO_REVE_Web.webp"
-                            alt="REVE Logo"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </Link>
+                {/* Logo Section */}
+                <Link href="/" className="relative w-24 h-10 sm:w-40 sm:h-12 shrink-0">
+                    <Image
+                        src="/images/Logos/LOGO_REVE_Web.webp"
+                        alt="REVE Logo"
+                        fill
+                        className="object-contain"
+                        priority
+                    />
+                </Link>
 
-                    {/* Info Block - Hidden on scroll in mobile per spec, but always visible in desktop */}
-                    <div className={`hidden md:flex flex-col text-[10pt] uppercase tracking-wider leading-tight border-l border-foreground/20 pl-6 transition-opacity duration-300`}>
-                        <span className="font-bold">16.07.26 • VALENCIA • ROIG ARENA</span>
-                        <span className="font-light">+10H MÚSICA • 2 ESCENARIOS • 1PM-12PM</span>
+                {/* Desktop/Layout Content Container */}
+                <div className="flex items-center justify-between w-full ml-4 md:ml-10">
+
+                    {/* Information Boxes Group */}
+                    <div className="flex items-center gap-6 lg:gap-10">
+                        {/* Box 1: Date & Venue */}
+                        <BoxedInfo className={`${isSticky ? 'hidden md:flex' : 'hidden sm:flex'}`}>
+                            <span>16.07.26</span>
+                            <span className="font-normal opacity-80">VALENCIA</span>
+                            <span>ROIG ARENA</span>
+                        </BoxedInfo>
+
+                        {/* Mobile Box 1: Prevalent on mobile sticky */}
+                        <BoxedInfo className={`md:hidden ${isSticky ? 'flex' : 'hidden'}`}>
+                            <span className="text-[7.5pt]">16.07.26</span>
+                            <span className="text-[7.5pt]">VALENCIA</span>
+                        </BoxedInfo>
+
+                        {/* Box 2: Festival Info */}
+                        <BoxedInfo className={`hidden lg:flex ${isSticky ? 'hidden xl:flex' : ''}`}>
+                            <span>+10 HORAS DE MÚSICA NONSTOP</span>
+                            <span className="font-normal opacity-80">2 ESCENARIOS</span>
+                            <span>1 PM - 12 PM</span>
+                        </BoxedInfo>
                     </div>
 
-                    {/* Info Block (Mobile) - Stacks info */}
-                    <div className={`flex md:hidden flex-col text-[8pt] uppercase transition-opacity duration-300 ${isSticky ? 'opacity-0 pointer-events-none w-0 h-0 overflow-hidden' : 'opacity-100'}`}>
-                        <span className="font-bold">16.07.26 • VALENCIA</span>
-                        <span className="font-light">+10H MÚSICA</span>
-                    </div>
-                </div>
+                    {/* Navigation - Hidden on mobile */}
+                    <nav className="hidden xl:flex items-center gap-8 text-[11pt] font-normal uppercase tracking-wide">
+                        <Link href="/entradas" className="hover:text-primary transition-colors">Tickets</Link>
+                        <Link href="/#lineup" className="hover:text-primary transition-colors">Artistas</Link>
+                        <Link href="/guia-de-compra" className="hover:text-primary transition-colors">Info</Link>
+                    </nav>
 
-                {/* Center/Right: Navigation Links (Desktop) */}
-                <nav className="hidden md:flex items-center gap-10">
-                    <Link href="/entradas" className="text-[12pt] font-bold hover:text-primary transition-colors">
-                        TICKETS
-                    </Link>
-                    <div className="group relative">
-                        <Link href="/#lineup" className="text-[12pt] font-bold hover:text-primary transition-colors">
-                            ARTISTAS
-                        </Link>
-                        {/* Dropdown would go here if needed in implementation Phase 1 */}
-                    </div>
-                    <Link href="/guia-de-compra" className="text-[12pt] font-bold hover:text-primary transition-colors">
-                        INFO
-                    </Link>
-                </nav>
-
-                {/* Action Button: Tickets Sticky CTA */}
-                <div className="flex items-center gap-4">
-                    <AnimatePresence>
-                        {isSticky && (
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
-                                className="hidden md:block"
-                            >
-                                <Link
-                                    href="/entradas"
-                                    className="bg-primary text-white px-8 py-2.5 text-[12pt] font-bold rounded-md hover:bg-primary/90 transition-all shadow-lg"
+                    {/* Right Group: CTA Button & Menu */}
+                    <div className="flex items-center gap-4">
+                        <AnimatePresence>
+                            {(isSticky || true) && (
+                                <motion.div
+                                    initial={isSticky ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className={`shrink-0 ${isSticky ? 'block' : 'hidden lg:block'}`}
                                 >
-                                    TICKETS
-                                </Link>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                    <Link
+                                        href="/entradas"
+                                        className="bg-primary text-white px-8 py-2.5 text-[12pt] font-bold rounded-sm hover:bg-foreground transition-all uppercase shadow-sm"
+                                    >
+                                        Tickets
+                                    </Link>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
-                    {/* Mobile Buttons */}
-                    <div className="flex md:hidden items-center gap-3">
-                        {isSticky && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="bg-primary text-white px-4 py-2 text-[10pt] font-bold rounded-md"
-                            >
-                                <Link href="/entradas">TICKETS</Link>
-                            </motion.div>
-                        )}
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 text-foreground"
+                            className="p-1 xl:hidden text-foreground hover:text-primary transition-colors"
                             aria-label="Abrir menú"
                         >
                             <Menu size={32} />
                         </button>
                     </div>
+
                 </div>
             </div>
 
