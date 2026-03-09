@@ -68,7 +68,7 @@ const EntradasPage = () => {
                     "Compra" Title Section 
                     Visible ONLY if NOT Sticky and aligned left with Logo
                 */}
-                <div className={`flex flex-col gap-1 mb-4 transition-opacity duration-300 ${isSticky ? 'opacity-0' : 'opacity-100'}`}>
+                <div className={`flex flex-col gap-1 mb-4 pt-8 transition-opacity duration-300 ${isSticky ? 'opacity-0' : 'opacity-100'}`}>
                     <div className="flex items-center gap-3">
                         <h1 className="text-[28pt] md:text-[36pt] font-black uppercase tracking-tighter text-black leading-none">
                             Compra

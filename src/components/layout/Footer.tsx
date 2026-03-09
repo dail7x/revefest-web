@@ -23,9 +23,21 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-[#f1f2f4] text-[#1d1d1b] pt-16 pb-8">
             <div className="container mx-auto px-6">
-                {/* 1. Sponsor Logos Grid */}
-                {/* Grid changed to support 6 columns on desktop, 3 columns on tablet/small laptops, and 2 columns on mobile */}
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 items-center justify-items-center gap-8 md:gap-12 mb-20 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                
+                {/* 1. REVE Logo - Centered above sponsors */}
+                <div className="flex justify-center mb-12">
+                    <div className="relative w-48 h-20 md:w-56 md:h-24">
+                        <Image
+                            src="/images/Logos/LOGO_REVE_Web.webp"
+                            alt="REVE Logo"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                </div>
+
+                {/* 2. Sponsor Logos Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 items-center justify-items-center gap-8 md:gap-12 mb-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                     {sponsors.map((sponsor) => (
                         <div key={sponsor.name} className="relative h-12 md:h-14 xl:h-16 w-full flex items-center justify-center">
                             <Image
@@ -38,43 +50,31 @@ const Footer: React.FC = () => {
                     ))}
                 </div>
 
-                {/* 2. Central Section: Social Media & Logo REVE */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-12">
-                    <div className="flex flex-col gap-6 items-center md:items-start text-center md:text-left">
-                        <span className="text-xl font-normal tracking-tight">¡Sigue nuestras redes!</span>
-                        <div className="flex items-center gap-6">
-                            {socialLinks.map((social) => (
-                                <Link
-                                    key={social.name}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="relative w-8 h-8 group transition-transform hover:scale-110"
-                                >
-                                    <Image
-                                        src={social.icon}
-                                        alt={social.name}
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* REVE Logo at bottom right of this section */}
-                    <div className="relative w-48 h-20 md:w-56 md:h-24">
-                        <Image
-                            src="/images/Logos/LOGO_REVE_Web.webp"
-                            alt="REVE Logo"
-                            fill
-                            className="object-contain"
-                        />
+                {/* 3. Social Media Section */}
+                <div className="flex flex-col items-center gap-6 mb-12">
+                    <span className="text-xl font-normal tracking-tight">¡Sigue nuestras redes!</span>
+                    <div className="flex items-center gap-6">
+                        {socialLinks.map((social) => (
+                            <Link
+                                key={social.name}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative w-8 h-8 group transition-transform hover:scale-110"
+                            >
+                                <Image
+                                    src={social.icon}
+                                    alt={social.name}
+                                    fill
+                                    className="object-contain"
+                                />
+                            </Link>
+                        ))}
                     </div>
                 </div>
 
-                {/* 3. Bottom Legal Bar */}
-                <div className="border-t border-black/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between gap-6 text-[10pt] uppercase tracking-tight font-medium">
+                {/* 4. Bottom Legal Bar */}
+                <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-[10pt] uppercase tracking-tight font-medium">
                     <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2">
                         <Link href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</Link>
                         <Link href="/politica-cookies" className="hover:text-primary transition-colors">Política de Cookies (UE)</Link>

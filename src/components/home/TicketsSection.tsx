@@ -35,7 +35,7 @@ const TicketsSection: React.FC = () => {
     return (
         <section id="tickets" className="py-6 md:py-12 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
-                <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8 flex items-center gap-3 italic">
+                <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8 flex items-center gap-3">
                     Tickets <span className="text-[#fc56ae] tracking-tighter">◆</span>
                     <div className="relative w-8 h-8 md:w-10 md:h-10">
                         <Image src="/images/Ticket.svg" alt="Ticket Icon" fill className="object-contain" />

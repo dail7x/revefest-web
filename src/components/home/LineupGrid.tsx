@@ -16,7 +16,7 @@ const LineupGrid: React.FC = () => {
                     href={`/artistas/${artista.slug}`}
                     className="group flex flex-col gap-4"
                 >
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                    <div className="relative aspect-[4/5] overflow-hidden">
                         <Image
                             src={artista.images.cartel}
                             alt={artista.name}

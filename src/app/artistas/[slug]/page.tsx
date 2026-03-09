@@ -42,7 +42,7 @@ const ArtistaPage = () => {
                 */}
                 <div className="flex flex-col gap-4 mb-6">
 
-                    {/* Primary Row: Back Arrow + Lineup + Artist Name + Tickets (Desktop/Mobile) */}
+                    {/* Primary Row: Back Arrow + Lineup + Artist Name + CTA Button (Desktop) */}
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 md:gap-4">
                             <button
@@ -57,32 +57,22 @@ const ArtistaPage = () => {
                             <span className="text-[20pt] md:text-[28pt] font-light uppercase tracking-tight text-gray-400">{artista.name}</span>
                         </div>
 
-                        {/* Right side: Tickets Header (Desktop) */}
-                        <div className="hidden md:flex items-center gap-3">
-                            <span className="text-[22pt] font-black uppercase tracking-tighter">Tickets</span>
-                            <span className="text-black text-2xl">◆</span>
-                            <div className="relative w-12 h-6">
-                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
-                            </div>
+                        {/* CTA Button - Desktop only (aligned right, same line as title) */}
+                        <div className={`hidden md:block transition-opacity duration-300 ${isSticky ? 'md:opacity-0 md:pointer-events-none' : 'opacity-100'}`}>
+                            <Link
+                                href="/entradas"
+                                className="bg-primary text-white py-3 md:py-4 px-10 text-center text-sm md:text-base font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                            >
+                                ¡Compra ya desde 18€!
+                            </Link>
                         </div>
                     </div>
 
-                    {/* Secondary Row (Mobile Tickets Label only) */}
-                    <div className="flex md:hidden items-center justify-end">
-                        <div className="flex items-center gap-3">
-                            <span className="text-[18pt] font-black uppercase tracking-tighter">Tickets</span>
-                            <span className="text-black text-xl">◆</span>
-                            <div className="relative w-10 h-6">
-                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Main CTA: Buy Button (Aligned right in Desktop, hidden when sticky) */}
-                    <div className={`flex justify-center md:justify-end transition-opacity duration-300 ${isSticky ? 'md:opacity-0 md:pointer-events-none' : 'opacity-100'}`}>
+                    {/* Main CTA: Buy Button - Mobile only */}
+                    <div className={`md:hidden flex justify-center transition-opacity duration-300 ${isSticky ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                         <Link
                             href="/entradas"
-                            className="w-full md:w-auto md:min-w-[320px] bg-primary text-white py-3 md:py-4 px-10 text-center text-sm md:text-base font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                            className="w-full bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
                         >
                             ¡Compra ya desde 18€!
                         </Link>
