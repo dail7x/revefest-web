@@ -31,24 +31,23 @@ const Newsletter: React.FC = () => {
     return (
         <section className="py-24 bg-white text-foreground overflow-hidden relative">
 
-            <div className="container mx-auto px-6 max-w-4xl relative z-10">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="container mx-auto px-6 relative z-10 flex justify-center">
+                <div className="inline-flex flex-col items-center gap-6">
 
-                    <div className="flex flex-col gap-4 text-center md:text-left">
-                        <h2 className="text-4xl md:text-5xl font-bold uppercase leading-tight tracking-tighter">
-                            Entérate de todo <br />
-                            <span className="text-primary">antes que nadie</span>
+                    <div className="flex flex-col gap-2 text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold uppercase leading-tight tracking-tighter whitespace-nowrap">
+                            Entérate de todo <span className="text-primary">antes que nadie</span>
                         </h2>
-                        <p className="text-foreground/60 font-light text-lg max-w-md">
-                            Suscríbete para recibir noticias exclusivas, preventas y el anuncio del lineup final.
+                        <p className="text-foreground/60 font-light text-lg">
+                            Suscríbete para recibir noticias exclusivas y el anuncio del lineup final.
                         </p>
                     </div>
 
                     <form
                         onSubmit={handleSubmit}
-                        className="w-full md:w-auto flex flex-col gap-3 min-w-[320px]"
+                        className="w-full flex flex-col gap-3"
                     >
-                        <div className="flex flex-col sm:flex-row gap-2">
+                        <div className="flex flex-row gap-2">
                             <input
                                 type="email"
                                 placeholder="TU EMAIL"
@@ -62,7 +61,7 @@ const Newsletter: React.FC = () => {
                                 type="submit"
                                 disabled={isSubmitDisabled}
                                 title={buttonTooltip}
-                                className="bg-primary hover:bg-foreground hover:text-white text-white font-bold px-10 py-4 transition-all uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-primary hover:bg-foreground hover:text-white text-white font-bold px-10 py-4 transition-all uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                             >
                                 {status === 'loading' ? 'ENVIANDO...' : status === 'success' ? '¡LISTO!' : 'UNIRME'}
                             </button>
