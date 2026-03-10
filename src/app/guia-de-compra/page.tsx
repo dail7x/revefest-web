@@ -42,6 +42,39 @@ const FAQItem = ({
     );
 };
 
+const FAQSection = ({
+    title,
+    faqs,
+    openIndex,
+    onToggle,
+    sectionOffset
+}: {
+    title: string,
+    faqs: { question: string, answer: string }[],
+    openIndex: number | null,
+    onToggle: (index: number) => void,
+    sectionOffset: number
+}) => {
+    return (
+        <div className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-black">
+                {title}
+            </h2>
+            <div className="border-t border-gray-200">
+                {faqs.map((faq, index) => (
+                    <FAQItem
+                        key={index}
+                        question={faq.question}
+                        answer={faq.answer}
+                        isOpen={openIndex === index + sectionOffset}
+                        onClick={() => onToggle(index + sectionOffset)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const GuiaDeCompraPage = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [isSticky, setIsSticky] = useState(false);
@@ -54,7 +87,24 @@ const GuiaDeCompraPage = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const faqs = [
+    // FAQs sobre compra de tickets
+    const guiaCompraFaqs = [
+        {
+            question: "¿Cómo recibo mis entradas?",
+            answer: "Una vez completada la compra a través de Fourvenues, recibirás un correo electrónico de confirmación con tus entradas en formato PDF / QR. También podrás acceder a ellas a través de la app de Fourvenues."
+        },
+        {
+            question: "¿Puedo cambiar el nombre de mi entrada?",
+            answer: "Los cambios de nombre se gestionan directamente a través de la plataforma Fourvenues. Revisa las condiciones generales de tu entrada para ver si el cambio tiene algún coste asociado."
+        },
+        {
+            question: "¿Cuál es la política de devoluciones?",
+            answer: "Las entradas no son reembolsables. En caso de cancelación del evento por parte de la organización, se gestionará el reembolso según las condiciones establecidas en las condiciones generales de compra."
+        }
+    ];
+
+    // FAQs sobre el evento (horarios, localización, etc.)
+    const sobreEventoFaqs = [
         {
             question: "¿Cuándo y dónde es el REVEFEST?",
             answer: "REVEFEST 2026 se llevará a cabo el 16 de julio de 2026 en el Roig Arena de Valencia. Las puertas abrirán a las 13:00 y la música sonará hasta medianoche."
@@ -62,10 +112,6 @@ const GuiaDeCompraPage = () => {
         {
             question: "¿Pueden entrar menores de edad?",
             answer: "Sí, REVEFEST es un evento para todas las edades. Los menores de 16 años deberán ir acompañados de su padre, madre o tutor legal y presentar la autorización de menores debidamente cumplimentada. Los menores de entre 16 y 17 años pueden acceder solos con autorización firmada."
-        },
-        {
-            question: "¿Cómo recibo mis entradas?",
-            answer: "Una vez completada la compra a través de Fourvenues, recibirás un correo electrónico de confirmación con tus entradas en formato PDF / QR. También podrás acceder a ellas a través de la app de Fourvenues."
         },
         {
             question: "¿Se permite la entrada de comida y bebida?",
@@ -76,8 +122,12 @@ const GuiaDeCompraPage = () => {
             answer: "Sí, el Roig Arena es un recinto totalmente accesible. Disponemos de zonas reservadas para PMR con visibilidad óptima. Por favor, selecciona la entrada correspondiente durante el proceso de compra."
         },
         {
-            question: "¿Puedo cambiar el nombre de mi entrada?",
-            answer: "Los cambios de nombre se gestionan directamente a través de la plataforma Fourvenues. Revisa las condiciones generales de tu entrada para ver si el cambio tiene algún coste asociado."
+            question: "¿Cuál es el horario de apertura y cierre?",
+            answer: "Las puertas del Roig Arena abrirán a las 13:00h. El evento comenzará a las 14:00h y la música continuará hasta las 00:00h (medianoche)."
+        },
+        {
+            question: "¿Cómo llegar al Roig Arena?",
+            answer: "El Roig Arena está ubicado en Valencia. Puedes llegar en transporte público (Metro línea 3 o 5, estación Mislata), en autobús o en coche. Hay parking disponible en las inmediaciones."
         }
     ];
 
@@ -89,10 +139,10 @@ const GuiaDeCompraPage = () => {
         <main className="min-h-screen bg-white">
             <div className="container mx-auto px-4 md:px-6">
 
-                {/* New Header Section based on Reference Image */}
-                <div className="flex flex-col gap-4 mb-4 pt-4">
+                {/* Header Section */}
+                <div className="flex flex-col gap-4 mb-8 pt-4">
 
-                    {/* Title Row: Info + FAQ vs Tickets */}
+                    {/* Title Row: Info + FAQ + CTA Button (aligned) */}
                     <div className="flex items-center justify-between">
                         {/* Left Side: + Info ◆ Preguntas Frecuentes */}
                         <div className="flex items-center gap-2 md:gap-4">
@@ -102,68 +152,53 @@ const GuiaDeCompraPage = () => {
                             <span className="text-[20pt] md:text-[28pt] font-light uppercase tracking-tight text-gray-400">Preguntas Frecuentes</span>
                         </div>
 
-                        {/* Right Side: Tickets Header (Desktop) */}
-                        <div className="hidden md:flex items-center gap-3">
-                            <span className="text-[22pt] font-black uppercase tracking-tighter">Tickets</span>
-                            <span className="text-black text-2xl">◆</span>
-                            <div className="relative w-12 h-6">
-                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
-                            </div>
+                        {/* CTA Button - Large Desktop only (aligned right, same line as title) */}
+                        <div className={`hidden lg:block transition-opacity duration-300 ${isSticky ? 'lg:opacity-0 lg:pointer-events-none' : 'opacity-100'}`}>
+                            <Link
+                                href="/entradas"
+                                className="bg-primary text-white py-3 px-8 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
+                            >
+                                ¡Compra ya desde 18€!
+                            </Link>
                         </div>
                     </div>
 
-                    {/* Mobile Tickets Label Only */}
-                    <div className="flex md:hidden items-center justify-end">
-                        <div className="flex items-center gap-3">
-                            <span className="text-[18pt] font-black uppercase tracking-tighter">Tickets</span>
-                            <span className="text-black text-xl">◆</span>
-                            <div className="relative w-10 h-6">
-                                <Image src="/images/Ticket.webp" alt="Ticket" fill className="object-contain grayscale brightness-0" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <p className="text-[9pt] md:text-[11pt] font-light uppercase tracking-[0.2em] opacity-80 text-black">
-                        Todo lo que necesitas saber antes de venir
-                    </p>
-
-                    {/* Main CTA: Buy Button (Aligned right in Desktop, hidden when sticky) */}
-                    <div className={`flex justify-center md:justify-end transition-opacity duration-300 ${isSticky ? 'md:opacity-0 md:pointer-events-none' : 'opacity-100'}`}>
+                    {/* CTA Button - Tablet and Mobile */}
+                    <div className={`lg:hidden flex justify-center transition-opacity duration-300 ${isSticky ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                         <Link
                             href="/entradas"
-                            className="w-full md:w-auto md:min-w-[320px] bg-primary text-white py-3 md:py-3.5 px-10 text-center text-xs md:text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                            className="w-full md:w-auto bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
                         >
                             ¡Compra ya desde 18€!
                         </Link>
                     </div>
                 </div>
 
-                {/* FAQ Accordion */}
-                <div className="max-w-4xl mx-auto mb-20 pt-8">
-                    {faqs.map((faq, index) => (
-                        <FAQItem
-                            key={index}
-                            question={faq.question}
-                            answer={faq.answer}
-                            isOpen={openIndex === index}
-                            onClick={() => handleToggle(index)}
-                        />
-                    ))}
+                {/* FAQ Sections */}
+                <div className="max-w-4xl mx-auto mb-20">
+                    
+                    {/* Sección 1: Guía de Compra */}
+                    <FAQSection
+                        title="Guía de Compra"
+                        faqs={guiaCompraFaqs}
+                        openIndex={openIndex}
+                        onToggle={handleToggle}
+                        sectionOffset={0}
+                    />
+
+                    {/* Sección 2: Sobre el REVE FEST 2026 */}
+                    <FAQSection
+                        title="Sobre el REVE FEST 2026"
+                        faqs={sobreEventoFaqs}
+                        openIndex={openIndex}
+                        onToggle={handleToggle}
+                        sectionOffset={guiaCompraFaqs.length}
+                    />
+
                 </div>
 
                 {/* Reusable Component: TICKETS */}
                 <TicketsSection />
-
-                {/* Contact CTA */}
-                <div className="mt-20 text-center pb-24">
-                    <p className="text-sm uppercase tracking-widest opacity-50 mb-4">¿Aún tienes dudas?</p>
-                    <a
-                        href="mailto:info@revefest.com"
-                        className="inline-block border-2 border-black px-10 py-4 font-black uppercase italic tracking-tighter hover:bg-black hover:text-white transition-all transform hover:scale-105"
-                    >
-                        Contáctanos
-                    </a>
-                </div>
 
             </div>
         </main>
