@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Ticket } from 'lucide-react';
+import { useCallback, useState, useEffect } from 'react';
 
 const TicketsSection: React.FC = () => {
     const tiers = [
@@ -30,13 +31,34 @@ const TicketsSection: React.FC = () => {
         },
     ];
 
-    const [emblaRef] = useEmblaCarousel({ align: 'start', containScroll: 'trimSnaps' });
+    const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', containScroll: 'trimSnaps' });
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return;
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+    }, [emblaApi]);
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        onSelect();
+        emblaApi.on('select', onSelect);
+        return () => { emblaApi.off('select', onSelect); };
+    }, [emblaApi, onSelect]);
 
     return (
         <section id="tickets" className="py-6 md:py-12 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8 flex items-center gap-3">
-                    Tickets <span className="text-[#fc56ae] tracking-tighter">◆</span>
+                    Tickets 
+                    <Image 
+                        src="/images/destello.svg" 
+                        alt="" 
+                        width={32} 
+                        height={32} 
+                        className="w-6 h-6 md:w-8 md:h-8" 
+                        style={{ filter: 'invert(55%) sepia(83%) saturate(2049%) hue-rotate(298deg) brightness(101%) contrast(101%)' }}
+                    />
                     <div className="relative w-8 h-8 md:w-10 md:h-10">
                         <Image src="/images/Ticket.svg" alt="Ticket Icon" fill className="object-contain" />
                     </div>
@@ -129,7 +151,7 @@ const TicketsSection: React.FC = () => {
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="lg:hidden flex flex-col gap-10">
+                <div className="lg:hidden flex flex-col gap-6">
                     {/* Mobile Slider */}
                     <div className="overflow-hidden" ref={emblaRef}>
                         <div className="flex gap-4 p-2">
@@ -181,6 +203,18 @@ const TicketsSection: React.FC = () => {
                                 </div>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Mobile Dots Indicator */}
+                    <div className="flex justify-center gap-2 mt-2">
+                        {tiers.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => emblaApi?.scrollTo(index)}
+                                className={`w-2 h-2 rounded-full transition-all ${selectedIndex === index ? 'bg-primary w-6' : 'bg-foreground/30'}`}
+                                aria-label={`Ir al tier ${index + 1}`}
+                            />
+                        ))}
                     </div>
 
                     {/* Mobile Map Section */}

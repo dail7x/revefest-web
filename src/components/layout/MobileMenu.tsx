@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import artistasData from '@/data/artistas.json';
@@ -35,14 +34,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             className="fixed top-0 right-0 h-full w-[60%] sm:w-[50%] bg-white z-[1000] shadow-2xl p-6 flex flex-col overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-8">
-              <Link href="/" onClick={onClose} className="relative w-24 h-12">
-                <Image
-                  src="/images/Logos/LOGO_REVE_Web.webp"
-                  alt="REVE Logo"
-                  fill
-                  className="object-contain"
-                />
+              {/* Tickets Button - Sticky Header Style */}
+              <Link
+                href="/entradas"
+                onClick={onClose}
+                className="bg-primary text-white px-6 py-2.5 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-foreground transition-colors"
+              >
+                Tickets
               </Link>
+              
               <button 
                 onClick={onClose}
                 className="p-2 text-foreground hover:text-primary transition-colors"
@@ -53,14 +53,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
 
             <nav className="flex flex-col gap-6">
-              <Link 
-                href="/entradas" 
-                onClick={onClose}
-                className="text-xl font-bold hover:text-primary transition-colors"
-              >
-                TICKETS
-              </Link>
-              
               <div className="flex flex-col gap-4">
                 <span className="text-xl font-bold text-foreground/40">ARTISTAS</span>
                 <div className="flex flex-col gap-3 pl-4">

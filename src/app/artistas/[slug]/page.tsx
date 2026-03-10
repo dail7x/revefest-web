@@ -53,15 +53,22 @@ const ArtistaPage = () => {
                                 <ArrowLeft size={32} strokeWidth={2.5} />
                             </button>
                             <h2 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black">Lineup</h2>
-                            <span className="text-primary text-xl md:text-3xl">◆</span>
+                            <Image 
+                                src="/images/destello.svg" 
+                                alt="" 
+                                width={28} 
+                                height={28} 
+                                className="w-5 h-5 md:w-7 md:h-7" 
+                                style={{ filter: 'invert(55%) sepia(83%) saturate(2049%) hue-rotate(298deg) brightness(101%) contrast(101%)' }}
+                            />
                             <span className="text-[20pt] md:text-[28pt] font-light uppercase tracking-tight text-gray-400">{artista.name}</span>
                         </div>
 
                         {/* CTA Button - Desktop only (aligned right, same line as title) */}
-                        <div className={`hidden md:block transition-opacity duration-300 ${isSticky ? 'md:opacity-0 md:pointer-events-none' : 'opacity-100'}`}>
+                        <div className={`hidden lg:block transition-opacity duration-300 ${isSticky ? 'lg:opacity-0 lg:pointer-events-none' : 'opacity-100'}`}>
                             <Link
                                 href="/entradas"
-                                className="bg-primary text-white py-3 md:py-4 px-10 text-center text-sm md:text-base font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                                className="bg-primary text-white py-3 px-6 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                             >
                                 ¡Compra ya desde 18€!
                             </Link>
@@ -72,7 +79,7 @@ const ArtistaPage = () => {
                     <div className={`md:hidden flex justify-center transition-opacity duration-300 ${isSticky ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                         <Link
                             href="/entradas"
-                            className="w-full bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
+                            className="w-full bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                         >
                             ¡Compra ya desde 18€!
                         </Link>
@@ -80,33 +87,35 @@ const ArtistaPage = () => {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="flex flex-col gap-8 md:gap-12">
+                <div className="flex flex-col gap-2">
 
                     {/* Artist Hero Image */}
-                    <div className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-sm overflow-hidden shadow-md">
+                    <div className="relative w-full h-[350px] md:h-[420px] rounded-sm overflow-hidden">
                         <Image
                             src={artista.images.pagina}
                             alt={artista.name}
                             fill
-                            className="object-cover"
+                            className="object-cover object-top"
                             priority
                             unoptimized
                         />
                     </div>
 
                     {/* Bio and Media Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
 
                         {/* Column 1: Biography */}
-                        <div className="flex flex-col gap-8">
-                            <div className="text-[14px] md:text-[16px] leading-relaxed text-black font-normal whitespace-pre-wrap text-justify">
-                                <strong className="font-bold">{artista.name}</strong> {artista.bio}
+                        <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-4 text-[14px] md:text-[16px] leading-relaxed text-black font-normal text-justify">
+                                {artista.bio.split('\n\n').map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))}
                             </div>
 
                             {/* CTA Repetition - Aligned with Bio */}
                             <Link
                                 href="/entradas"
-                                className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all text-center md:text-left block"
+                                className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all text-center md:text-left block whitespace-nowrap"
                             >
                                 ¡Compra ya desde 18€!
                             </Link>
