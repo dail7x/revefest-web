@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from './MobileMenu';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Marker = ({ className }: { className: string }) => (
     <span className={`absolute text-[6px] text-foreground leading-none ${className}`}>◆</span>
@@ -26,6 +27,8 @@ const BoxedInfo = ({ children, className = "" }: { children: React.ReactNode, cl
 const Header: React.FC = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -80,17 +83,15 @@ const Header: React.FC = () => {
                             <Link href="/entradas" className="hover:text-primary transition-colors">Tickets</Link>
                             <button 
                                 onClick={() => {
-                                    const desktopGrid = document.getElementById('lineup-grid-desktop');
-                                    const mobileGrid = document.getElementById('lineup-grid');
-                                    if (desktopGrid && window.getComputedStyle(desktopGrid).display !== 'none') {
-                                        desktopGrid.scrollIntoView({ behavior: 'smooth' });
-                                    } else if (mobileGrid) {
-                                        mobileGrid.scrollIntoView({ behavior: 'smooth' });
+                                    if (pathname !== '/') {
+                                        router.push('/#lineup');
+                                    } else {
+                                        document.getElementById('lineup')?.scrollIntoView({ behavior: 'smooth' });
                                     }
                                 }}
                                 className="hover:text-primary transition-colors"
                             >
-                                Artistas
+                                ARTISTAS
                             </button>
                             <Link href="/guia-de-compra" className="hover:text-primary transition-colors">Info</Link>
                         </nav>
