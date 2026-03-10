@@ -12,7 +12,18 @@ const LineupText: React.FC = () => {
         <section id="lineup" className="container mx-auto px-6 py-4 md:py-8">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-4">
                 <div className="flex flex-col gap-8 flex-grow">
-                    <h2 className="text-4xl md:text-5xl font-bold uppercase flex items-center gap-4 shrink-0">
+                    <h2 
+                        className="text-4xl md:text-5xl font-bold uppercase flex items-center gap-4 shrink-0 cursor-pointer hover:text-primary transition-colors"
+                        onClick={() => {
+                            const desktopGrid = document.getElementById('lineup-grid-desktop');
+                            const mobileGrid = document.getElementById('lineup-grid');
+                            if (desktopGrid && window.getComputedStyle(desktopGrid).display !== 'none') {
+                                desktopGrid.scrollIntoView({ behavior: 'smooth' });
+                            } else if (mobileGrid) {
+                                mobileGrid.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
                         Lineup 
                         <Image 
                             src="/images/destello.svg" 

@@ -78,7 +78,20 @@ const Header: React.FC = () => {
                         {/* Navigation - Hidden on mobile/tablet */}
                         <nav className="hidden xl:flex items-center gap-8 text-[11pt] font-normal uppercase tracking-wide">
                             <Link href="/entradas" className="hover:text-primary transition-colors">Tickets</Link>
-                            <Link href="/#lineup" className="hover:text-primary transition-colors">Artistas</Link>
+                            <button 
+                                onClick={() => {
+                                    const desktopGrid = document.getElementById('lineup-grid-desktop');
+                                    const mobileGrid = document.getElementById('lineup-grid');
+                                    if (desktopGrid && window.getComputedStyle(desktopGrid).display !== 'none') {
+                                        desktopGrid.scrollIntoView({ behavior: 'smooth' });
+                                    } else if (mobileGrid) {
+                                        mobileGrid.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                }}
+                                className="hover:text-primary transition-colors"
+                            >
+                                Artistas
+                            </button>
                             <Link href="/guia-de-compra" className="hover:text-primary transition-colors">Info</Link>
                         </nav>
 

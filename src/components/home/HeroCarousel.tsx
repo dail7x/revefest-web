@@ -5,13 +5,21 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
-import artistasData from '@/data/artistas.json';
+
+interface HeroSlide {
+    id: number;
+    type: 'image' | 'video';
+    src: string;
+    alt: string;
+}
+
+const heroSlides: HeroSlide[] = [
+    { id: 1, type: 'image', src: '/images/artists/Hero/bannerweb_Maria.webp', alt: 'María Becerra' },
+    { id: 2, type: 'video', src: '/images/artists/Hero/videobanner_final.mp4', alt: 'Video REVE' },
+    { id: 3, type: 'image', src: '/images/artists/Hero/bannerweb_general.webp', alt: 'REVE FEST' },
+];
 
 const HeroCarousel: React.FC = () => {
-    const headliners = artistasData
-        .filter(a => a.isHeadliner)
-        .sort((a, b) => a.order - b.order);
-
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
         Autoplay({
             delay: 5000,
@@ -26,16 +34,6 @@ const HeroCarousel: React.FC = () => {
         if (!emblaApi) return;
         const index = emblaApi.selectedScrollSnap();
         setSelectedIndex(index);
-
-        // Timing logic for Maria Becerra (Index 0)
-        const autoplay = emblaApi.plugins().autoplay;
-        if (autoplay) {
-            if (index === 0) {
-                autoplay.reset();
-                // Custom delay for the first slide is hard to set dynamically per slide in the basic plugin
-                // Standardizing to 5s for now for stability, but noting the requirement.
-            }
-        }
     }, [emblaApi]);
 
     useEffect(() => {
@@ -50,19 +48,30 @@ const HeroCarousel: React.FC = () => {
 
     return (
         <div className="hidden md:block relative group">
-            <div className="overflow-hidden" ref={emblaRef}>
+            <div className="overflow-hidden max-w-5xl mx-auto" ref={emblaRef}>
                 <div className="flex">
-                    {headliners.map((artista) => (
-                        <div key={artista.id} className="flex-[0_0_100%] min-w-0 relative h-[600px]">
+                    {heroSlides.map((slide) => (
+                        <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative h-[540px]">
                             <Link href="/entradas" className="block w-full h-full">
-                                <Image
-                                    src={artista.images.hero}
-                                    alt={artista.name}
-                                    fill
-                                    className="object-cover"
-                                    priority={artista.order === 1}
-                                    unoptimized
-                                />
+                                {slide.type === 'video' ? (
+                                    <video
+                                        src={slide.src}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        className="w-full h-full object-contain"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={slide.src}
+                                        alt={slide.alt}
+                                        fill
+                                        className="object-contain"
+                                        priority={slide.id === 1}
+                                        unoptimized
+                                    />
+                                )}
                             </Link>
                         </div>
                     ))}
@@ -70,8 +79,8 @@ const HeroCarousel: React.FC = () => {
             </div>
 
             {/* Pagination Dots - Below and to the right */}
-            <div className="flex justify-end gap-3 mt-4 pr-6">
-                {headliners.map((_, index) => (
+            <div className="flex justify-end gap-3 mt-4 pr-6 max-w-5xl mx-auto">
+                {heroSlides.map((_, index) => (
                     <button
                         key={index}
                         onClick={() => scrollTo(index)}
