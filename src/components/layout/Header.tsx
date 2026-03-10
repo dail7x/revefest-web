@@ -48,7 +48,16 @@ const Header: React.FC = () => {
                 <div className="container mx-auto px-4 md:px-6 flex items-center">
 
                     {/* Logo Section */}
-                    <Link href="/" className="relative w-24 h-10 sm:w-40 sm:h-12 shrink-0">
+                    <button 
+                        onClick={() => {
+                            if (pathname === '/') {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                router.push('/');
+                            }
+                        }}
+                        className="relative w-24 h-10 sm:w-40 sm:h-12 shrink-0 cursor-pointer"
+                    >
                         <Image
                             src="/images/Logos/LOGO_REVE_Web.webp"
                             alt="REVE Logo"
@@ -56,7 +65,7 @@ const Header: React.FC = () => {
                             className="object-contain"
                             priority
                         />
-                    </Link>
+                    </button>
 
                     {/* Content Container */}
                     <div className="flex items-center justify-between w-full ml-4 md:ml-10">
