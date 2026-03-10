@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import artistasData from '@/data/artistas.json';
 
 const LineupText: React.FC = () => {
@@ -13,45 +12,15 @@ const LineupText: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 border-b border-foreground/5 pb-4">
                 <div className="flex flex-col gap-8 flex-grow">
                     <h2 className="text-4xl md:text-5xl font-bold uppercase flex items-center gap-4 shrink-0">
-                        Lineup 
-                        <Image 
-                            src="/images/destello.svg" 
-                            alt="" 
-                            width={32} 
-                            height={32} 
-                            className="w-6 h-6 md:w-8 md:h-8 text-primary" 
-                            style={{ filter: 'invert(55%) sepia(83%) saturate(2049%) hue-rotate(298deg) brightness(101%) contrast(101%)' }}
-                        />
+                        Lineup <span className="text-primary tracking-tighter">◆</span>
                     </h2>
 
-                    {/* Mobile: 2 filas fijas de 3 artistas */}
-                    <div className="grid grid-cols-3 md:hidden w-full">
-                        {artists.map((artista, index) => (
-                            <div 
-                                key={artista.id} 
-                                className="flex items-center justify-between py-2 px-1"
-                            >
-                                <Link
-                                    href={`/artistas/${artista.slug}`}
-                                    className="text-[11pt] font-light hover:text-primary transition-colors cursor-pointer uppercase tracking-tight flex-1 text-center"
-                                >
-                                    {artista.name}
-                                </Link>
-                                {/* Barra al final fijo, excepto posición 2 y 5 */}
-                                {index !== 2 && index !== 5 && (
-                                    <span className="text-foreground/20 text-xl font-light pl-2">|</span>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Desktop: wrap fluido */}
-                    <div className="hidden md:flex flex-wrap items-center gap-x-6 gap-y-4">
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
                         {artists.map((artista, index) => (
                             <React.Fragment key={artista.id}>
                                 <Link
                                     href={`/artistas/${artista.slug}`}
-                                    className="text-[18pt] font-light hover:text-primary transition-colors cursor-pointer uppercase tracking-tight"
+                                    className="text-[14pt] md:text-[18pt] font-light hover:text-primary transition-colors cursor-pointer uppercase tracking-tight"
                                 >
                                     {artista.name}
                                 </Link>

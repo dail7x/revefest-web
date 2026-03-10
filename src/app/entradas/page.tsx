@@ -70,18 +70,11 @@ const EntradasPage = () => {
                 */}
                 <div className={`flex flex-col gap-1 mb-4 pt-8 transition-opacity duration-300 ${isSticky ? 'opacity-0' : 'opacity-100'}`}>
                     <div className="flex items-center gap-3">
-                        <h1 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black leading-none">
+                        <h1 className="text-[28pt] md:text-[36pt] font-black uppercase tracking-tighter text-black leading-none">
                             Compra
                         </h1>
                         <div className="flex items-center gap-2">
-                            <Image 
-                                src="/images/destello.svg" 
-                                alt="" 
-                                width={28} 
-                                height={28} 
-                                className="w-5 h-5 md:w-7 md:h-7" 
-                                style={{ filter: 'invert(55%) sepia(83%) saturate(2049%) hue-rotate(298deg) brightness(101%) contrast(101%)' }}
-                            />
+                            <span className="text-xl md:text-3xl text-primary leading-none">◆</span>
                             <div className="relative w-10 h-6 md:w-14 md:h-8">
                                 <Image
                                     src="/images/Ticket.webp"

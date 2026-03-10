@@ -24,16 +24,21 @@ const MobileLineupCarousel: React.FC = () => {
                             className="flex-[0_0_85vw] min-w-0"
                         >
                             <Link href={`/artistas/${artista.slug}`} className="block">
-                                <div className="relative aspect-[3/4] overflow-hidden shadow-lg border border-gray-100">
+                                <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg border border-gray-100">
                                     <Image
                                         src={artista.images.cartel}
                                         alt={artista.name}
                                         fill
-                                        className="object-cover object-top"
+                                        className="object-cover"
                                         priority={artista.order <= 2}
                                         unoptimized
                                     />
-
+                                    {/* Fallback label if image is too busy */}
+                                    <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent">
+                                        <span className="text-white font-bold text-xl uppercase italic tracking-tighter">
+                                            {artista.name}
+                                        </span>
+                                    </div>
                                 </div>
                             </Link>
                         </div>
