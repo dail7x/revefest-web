@@ -148,7 +148,14 @@ const GuiaDeCompraPage = () => {
                         <div className="flex items-center gap-2 md:gap-4">
                             <Plus size={24} className="text-black stroke-[3px]" />
                             <h1 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black">Info</h1>
-                            <span className="text-primary text-xl md:text-3xl">◆</span>
+                            <Image 
+                                src="/images/destello.svg" 
+                                alt="" 
+                                width={28} 
+                                height={28} 
+                                className="w-5 h-5 md:w-7 md:h-7" 
+                                style={{ filter: 'invert(55%) sepia(83%) saturate(2049%) hue-rotate(298deg) brightness(101%) contrast(101%)' }}
+                            />
                             <span className="text-[20pt] md:text-[28pt] font-light uppercase tracking-tight text-gray-400">Preguntas Frecuentes</span>
                         </div>
 
