@@ -4,8 +4,21 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "REVEFEST 2026 | Valencia • Roig Arena",
-  description: "Web oficial de REVEFEST 2026 en Valencia. Más de 10h de música en el Roig Arena.",
+  title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
+  description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
+  openGraph: {
+    title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
+    description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
+    images: [
+      {
+        url: "/images/artists/Hero/bannerweb_general.webp",
+        width: 1200,
+        height: 630,
+        alt: "REVE FEST 2026 - Festival Musical Solidario en Valencia",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
