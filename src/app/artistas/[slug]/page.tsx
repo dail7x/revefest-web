@@ -90,15 +90,28 @@ const ArtistaPage = () => {
                 <div className="flex flex-col gap-2">
 
                     {/* Artist Hero Image */}
-                    <div className="relative w-full h-[350px] md:h-[420px] rounded-sm overflow-hidden">
+                    <div className="w-full md:max-w-5xl md:mx-auto h-auto md:h-[420px] rounded-sm overflow-hidden">
+                        {/* Mobile: Imagen completa sin transformaciones */}
                         <Image
                             src={artista.images.pagina}
                             alt={artista.name}
-                            fill
-                            className="object-cover object-top"
+                            width={1200}
+                            height={800}
+                            className="w-full h-auto md:hidden"
                             priority
                             unoptimized
                         />
+                        {/* Desktop: Object cover con margen */}
+                        <div className="relative w-full h-[420px] hidden md:block">
+                            <Image
+                                src={artista.images.pagina}
+                                alt={artista.name}
+                                fill
+                                className="object-cover object-top"
+                                priority
+                                unoptimized
+                            />
+                        </div>
                     </div>
 
                     {/* Bio and Media Section */}

@@ -15,14 +15,16 @@ export default function Home() {
       {/* SECCIÓN 2: CARROUSELS (Hero Desktop / Lineup Mobile) - FEAT-004 & 005 */}
       <section className="w-full">
         <HeroCarousel />
-        <MobileLineupCarousel />
+        <div id="lineup-grid" className="scroll-mt-24">
+          <MobileLineupCarousel />
+        </div>
       </section>
 
       {/* SECCIÓN 3: LINEUP TEXTO + CTA (Unified) */}
       <LineupText />
 
       {/* SECCIÓN 4: LINEUP GRID (Desktop Only) - FEAT-007 */}
-      <div className="container mx-auto px-6 pb-4 md:pb-6">
+      <div id="lineup-grid-desktop" className="container mx-auto px-6 pb-4 md:pb-6 scroll-mt-24">
         <LineupGrid />
       </div>
 

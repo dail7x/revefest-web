@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from './MobileMenu';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Marker = ({ className }: { className: string }) => (
     <span className={`absolute text-[6px] text-foreground leading-none ${className}`}>◆</span>
@@ -26,6 +27,8 @@ const BoxedInfo = ({ children, className = "" }: { children: React.ReactNode, cl
 const Header: React.FC = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,7 +48,16 @@ const Header: React.FC = () => {
                 <div className="container mx-auto px-4 md:px-6 flex items-center">
 
                     {/* Logo Section */}
-                    <Link href="/" className="relative w-24 h-10 sm:w-40 sm:h-12 shrink-0">
+                    <button 
+                        onClick={() => {
+                            if (pathname === '/') {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                router.push('/');
+                            }
+                        }}
+                        className="relative w-24 h-10 sm:w-40 sm:h-12 shrink-0 cursor-pointer"
+                    >
                         <Image
                             src="/images/Logos/LOGO_REVE_Web.webp"
                             alt="REVE Logo"
@@ -53,7 +65,7 @@ const Header: React.FC = () => {
                             className="object-contain"
                             priority
                         />
-                    </Link>
+                    </button>
 
                     {/* Content Container */}
                     <div className="flex items-center justify-between w-full ml-4 md:ml-10">
@@ -78,7 +90,18 @@ const Header: React.FC = () => {
                         {/* Navigation - Hidden on mobile/tablet */}
                         <nav className="hidden xl:flex items-center gap-8 text-[11pt] font-normal uppercase tracking-wide">
                             <Link href="/entradas" className="hover:text-primary transition-colors">Tickets</Link>
-                            <Link href="/#lineup" className="hover:text-primary transition-colors">Artistas</Link>
+                            <button 
+                                onClick={() => {
+                                    if (pathname !== '/') {
+                                        router.push('/#lineup');
+                                    } else {
+                                        document.getElementById('lineup')?.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                }}
+                                className="hover:text-primary transition-colors"
+                            >
+                                ARTISTAS
+                            </button>
                             <Link href="/guia-de-compra" className="hover:text-primary transition-colors">Info</Link>
                         </nav>
 

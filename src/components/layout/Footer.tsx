@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
         <footer className="bg-[#f1f2f4] text-[#1d1d1b] pt-16 pb-8">
             <div className="container mx-auto px-6">
                 
-                {/* 1. REVE Logo - Centered above sponsors */}
-                <div className="flex justify-center mb-12">
+                {/* 1. REVE Logo - Centered */}
+                <div className="flex justify-center mb-8">
                     <div className="relative w-48 h-20 md:w-56 md:h-24">
                         <Image
                             src="/images/Logos/LOGO_REVE_Web.webp"
@@ -36,22 +36,8 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 2. Sponsor Logos Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 items-center justify-items-center gap-8 md:gap-12 mb-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                    {sponsors.map((sponsor) => (
-                        <div key={sponsor.name} className="relative h-12 md:h-14 xl:h-16 w-full flex items-center justify-center">
-                            <Image
-                                src={sponsor.icon}
-                                alt={sponsor.name}
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                    ))}
-                </div>
-
-                {/* 3. Social Media Section */}
-                <div className="flex flex-col items-center gap-6 mb-12">
+                {/* 2. Social Media Section - Below logo */}
+                <div className="flex flex-col items-center gap-4 mb-12">
                     <span className="text-xl font-normal tracking-tight">¡Sigue nuestras redes!</span>
                     <div className="flex items-center gap-6">
                         {socialLinks.map((social) => (
@@ -71,6 +57,20 @@ const Footer: React.FC = () => {
                             </Link>
                         ))}
                     </div>
+                </div>
+
+                {/* 3. Sponsor Logos Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 items-center justify-items-center gap-8 md:gap-12 mb-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                    {sponsors.map((sponsor) => (
+                        <div key={sponsor.name} className="relative h-12 md:h-14 xl:h-16 w-full flex items-center justify-center">
+                            <Image
+                                src={sponsor.icon}
+                                alt={sponsor.name}
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
+                    ))}
                 </div>
 
                 {/* 4. Bottom Legal Bar */}

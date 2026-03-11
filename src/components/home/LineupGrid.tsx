@@ -29,7 +29,7 @@ const LineupGrid: React.FC = () => {
                         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <div className="flex items-center justify-between">
-                        <h3 className="text-[18pt] font-bold uppercase transition-colors group-hover:text-primary">
+                        <h3 className="text-[14pt] md:text-[18pt] font-light uppercase transition-colors group-hover:text-primary tracking-tight">
                             {artista.name}
                         </h3>
                         <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">
