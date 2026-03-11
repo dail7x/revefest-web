@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://revefest.com"),
   title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
   description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
   openGraph: {
