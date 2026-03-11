@@ -14,7 +14,7 @@ interface HeroSlide {
 }
 
 const heroSlides: HeroSlide[] = [
-    { id: 1, type: 'image', src: '/images/MariaBecerraHero_169.webp', alt: 'María Becerra' },
+    { id: 1, type: 'image', src: '/images/artists/Hero/MariaBecerraHero_169.webp', alt: 'María Becerra' },
 ];
 
 const HeroCarousel: React.FC = () => {
