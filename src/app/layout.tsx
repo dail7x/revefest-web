@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://revefest.com"),
   title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
   description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon0.svg', type: 'image/svg+xml' },
+      { url: '/icon1.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
     description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
