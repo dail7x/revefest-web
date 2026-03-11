@@ -12,10 +12,10 @@ const TicketsSection: React.FC = () => {
         {
             name: 'Entrada General',
             title: 'Entrada General',
-            badge: '¡Últimas entradas a 18€!\nVente al precio más bajo.',
+            badge: '¡Últimas entradas!\nVente al precio más bajo.',
             description: 'Acceso completo al REVE FEST en el Roig Arena (jueves 16 de julio de 13h a 24h).',
-            price: '18€',
-            category: 'Pista General',
+            price: '49,50€',
+            categories: ['Pista General', 'Grada General'],
             buttonColor: 'bg-[#fc56ae]',
             textColor: 'text-white'
         },
@@ -89,19 +89,37 @@ const TicketsSection: React.FC = () => {
                                 </p>
 
                                 <div className="mt-auto">
-                                    <div className="flex items-center justify-between py-6 border-b border-gray-100 mb-6">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 rounded-full border border-gray-400 flex items-center justify-center">
-                                                <div className="w-1.5 h-1.5 bg-gray-600 rounded-full" />
+                                    {/* Categorías de tickets */}
+                                    <div className="py-6 border-b border-gray-100 mb-6 space-y-4">
+                                        {tier.categories ? (
+                                            // Entrada General con múltiples categorías
+                                            tier.categories.map((cat) => (
+                                                <div key={cat} className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="relative w-6 h-6">
+                                                            <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                                        </div>
+                                                        <span className="text-xl font-bold">{tier.price}</span>
+                                                    </div>
+                                                    <span className="text-lg font-normal text-gray-800 uppercase tracking-tight">
+                                                        {cat}
+                                                    </span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            // Front Stage u otros con una sola categoría
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="relative w-6 h-6">
+                                                        <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                                    </div>
+                                                    <span className="text-xl font-bold">{tier.price}</span>
+                                                </div>
+                                                <span className="text-lg font-normal text-gray-800 uppercase tracking-tight">
+                                                    {tier.category}
+                                                </span>
                                             </div>
-                                            <div className="relative w-6 h-6">
-                                                <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
-                                            </div>
-                                            <span className="text-xl font-bold">{tier.price}</span>
-                                        </div>
-                                        <span className="text-lg font-normal text-gray-800 uppercase tracking-tight">
-                                            {tier.category}
-                                        </span>
+                                        )}
                                     </div>
 
                                     <p className="text-[10pt] text-gray-400 italic mb-6">
@@ -175,19 +193,34 @@ const TicketsSection: React.FC = () => {
                                         {tier.description}
                                     </p>
 
-                                    <div className="flex items-center justify-between py-4 border-b border-gray-100 mb-4">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-3 h-3 rounded-full border border-gray-400 flex items-center justify-center">
-                                                <div className="w-1.5 h-1.5 bg-gray-600 rounded-full" />
+                                    <div className="py-4 border-b border-gray-100 mb-4 space-y-3">
+                                        {tier.categories ? (
+                                            tier.categories.map((cat) => (
+                                                <div key={cat} className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="relative w-5 h-5">
+                                                            <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                                        </div>
+                                                        <span className="text-lg font-bold">{tier.price}</span>
+                                                    </div>
+                                                    <span className="text-sm font-normal text-gray-800 uppercase tracking-tight">
+                                                        {cat}
+                                                    </span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="relative w-5 h-5">
+                                                        <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
+                                                    </div>
+                                                    <span className="text-lg font-bold">{tier.price}</span>
+                                                </div>
+                                                <span className="text-sm font-normal text-gray-800 uppercase tracking-tight">
+                                                    {tier.category}
+                                                </span>
                                             </div>
-                                            <div className="relative w-5 h-5">
-                                                <Image src="/images/Ticket.svg" alt="Ticket" fill className="object-contain" />
-                                            </div>
-                                            <span className="text-lg font-bold">{tier.price}</span>
-                                        </div>
-                                        <span className="text-sm font-normal text-gray-800 uppercase tracking-tight">
-                                            {tier.category}
-                                        </span>
+                                        )}
                                     </div>
 
                                     <p className="text-[9pt] text-gray-400 italic mb-4">
