@@ -2,7 +2,6 @@
 
 import Script from "next/script";
 
-const GA_MEASUREMENT_ID = "G-P32C918QET";
 const GTM_ID = "GT-NNXMX3RH";
 
 export default function GoogleAnalytics() {
@@ -10,7 +9,7 @@ export default function GoogleAnalytics() {
     <>
       {/* Google Tag Manager - Head */}
       <Script
-        id="gtm-head"
+        id="gtm-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -23,37 +22,15 @@ export default function GoogleAnalytics() {
         }}
       />
 
-      {/* Google Analytics 4 */}
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script
-        id="ga4"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_title: document.title,
-              page_location: window.location.href,
-            });
-          `,
-        }}
-      />
-
       {/* Google Tag Manager - Body (noscript) */}
-      <noscript
-        dangerouslySetInnerHTML={{
-          __html: `
-            <iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}"
-            height="0" width="0" 
-            style="display:none;visibility:hidden"></iframe>
-          `,
-        }}
-      />
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        />
+      </noscript>
     </>
   );
 }
