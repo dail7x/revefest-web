@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://revefest.com"),
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="antialiased min-h-screen flex flex-col">
+        <GoogleAnalytics />
         <Header />
         <main className="flex-grow pt-[80px] sm:pt-[100px]">
           {children}
