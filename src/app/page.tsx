@@ -31,8 +31,8 @@ export default function Home() {
       {/* SECCIÓN 5: TICKETS (Tiers + Mapa) - FEAT-008 */}
       <TicketsSection />
 
-      {/* SECCIÓN 6: NEWSLETTER - FEAT-009 */}
-      <Newsletter />
+      {/* SECCIÓN 6: NEWSLETTER - FEAT-009 - OCULTO TEMPORALMENTE */}
+      {/* <Newsletter /> */}
 
     </div>
   );

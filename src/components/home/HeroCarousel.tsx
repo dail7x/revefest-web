@@ -14,9 +14,7 @@ interface HeroSlide {
 }
 
 const heroSlides: HeroSlide[] = [
-    { id: 1, type: 'image', src: '/images/artists/Hero/bannerweb_Maria.webp', alt: 'María Becerra' },
-    { id: 2, type: 'video', src: '/images/artists/Hero/videobanner_final.mp4', alt: 'Video REVE' },
-    { id: 3, type: 'image', src: '/images/artists/Hero/bannerweb_general.webp', alt: 'REVE FEST' },
+    { id: 1, type: 'image', src: '/images/MariaBecerraHero_169.webp', alt: 'María Becerra' },
 ];
 
 const HeroCarousel: React.FC = () => {
@@ -51,7 +49,7 @@ const HeroCarousel: React.FC = () => {
             <div className="overflow-hidden max-w-5xl mx-auto" ref={emblaRef}>
                 <div className="flex">
                     {heroSlides.map((slide) => (
-                        <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative h-[540px]">
+                        <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative aspect-video">
                             <Link href="/entradas" className="block w-full h-full">
                                 {slide.type === 'video' ? (
                                     <video
@@ -78,18 +76,20 @@ const HeroCarousel: React.FC = () => {
                 </div>
             </div>
 
-            {/* Pagination Dots - Below and to the right */}
-            <div className="flex justify-end gap-3 mt-4 pr-6 max-w-5xl mx-auto">
-                {heroSlides.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => scrollTo(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${selectedIndex === index ? 'bg-primary w-8' : 'bg-foreground/30'
-                            }`}
-                        aria-label={`Ir al slide ${index + 1}`}
-                    />
-                ))}
-            </div>
+            {/* Pagination Dots - Hidden when only one slide */}
+            {heroSlides.length > 1 && (
+                <div className="flex justify-end gap-3 mt-4 pr-6 max-w-5xl mx-auto">
+                    {heroSlides.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => scrollTo(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${selectedIndex === index ? 'bg-primary w-8' : 'bg-foreground/30'
+                                }`}
+                            aria-label={`Ir al slide ${index + 1}`}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

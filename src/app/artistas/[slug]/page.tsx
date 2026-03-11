@@ -70,7 +70,7 @@ const ArtistaPage = () => {
                                 href="/entradas"
                                 className="bg-primary text-white py-3 px-6 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                             >
-                                ¡Compra ya desde 18€!
+                                ¡Compra ya desde 49,50€!
                             </Link>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ const ArtistaPage = () => {
                             href="/entradas"
                             className="w-full bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                         >
-                            ¡Compra ya desde 18€!
+                            ¡Compra ya desde 49,50€!
                         </Link>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ const ArtistaPage = () => {
                                 href="/entradas"
                                 className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all text-center md:text-left block whitespace-nowrap"
                             >
-                                ¡Compra ya desde 18€!
+                                ¡Compra ya desde 49,50€!
                             </Link>
                         </div>
 

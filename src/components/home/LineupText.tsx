@@ -38,7 +38,7 @@ const LineupText: React.FC = () => {
                             >
                                 <Link
                                     href={`/artistas/${artista.slug}`}
-                                    className="text-[11pt] font-light hover:text-primary transition-colors cursor-pointer uppercase tracking-tight flex-1 text-center"
+                                    className={`text-[11pt] hover:text-primary transition-colors cursor-pointer uppercase tracking-tight flex-1 text-center ${index === 0 ? 'font-bold text-[13pt]' : 'font-light'}`}
                                 >
                                     {artista.name}
                                 </Link>
@@ -56,7 +56,7 @@ const LineupText: React.FC = () => {
                             <React.Fragment key={artista.id}>
                                 <Link
                                     href={`/artistas/${artista.slug}`}
-                                    className="text-[18pt] font-light hover:text-primary transition-colors cursor-pointer uppercase tracking-tight"
+                                    className={`hover:text-primary transition-colors cursor-pointer uppercase tracking-tight ${index === 0 ? 'font-bold text-[22pt]' : 'font-light text-[18pt]'}`}
                                 >
                                     {artista.name}
                                 </Link>
