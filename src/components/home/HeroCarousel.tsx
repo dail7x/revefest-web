@@ -30,8 +30,7 @@ const HeroCarousel: React.FC = () => {
 
     const onSelect = useCallback(() => {
         if (!emblaApi) return;
-        const index = emblaApi.selectedScrollSnap();
-        setSelectedIndex(index);
+        setSelectedIndex(emblaApi.selectedScrollSnap());
     }, [emblaApi]);
 
     useEffect(() => {
@@ -45,31 +44,20 @@ const HeroCarousel: React.FC = () => {
     }, [emblaApi]);
 
     return (
-        <div className="hidden md:block relative group">
-            <div className="overflow-hidden max-w-5xl mx-auto" ref={emblaRef}>
+        <div className="hidden md:block relative w-full">
+            <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                     {heroSlides.map((slide) => (
-                        <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative aspect-video">
+                        <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative aspect-[16/9] max-h-[70vh]">
                             <Link href="/entradas" className="block w-full h-full">
-                                {slide.type === 'video' ? (
-                                    <video
-                                        src={slide.src}
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        className="w-full h-full object-contain"
-                                    />
-                                ) : (
-                                    <Image
-                                        src={slide.src}
-                                        alt={slide.alt}
-                                        fill
-                                        className="object-contain"
-                                        priority={slide.id === 1}
-                                        unoptimized
-                                    />
-                                )}
+                                <Image
+                                    src={slide.src}
+                                    alt={slide.alt}
+                                    fill
+                                    className="object-cover object-center"
+                                    priority={slide.id === 1}
+                                    unoptimized
+                                />
                             </Link>
                         </div>
                     ))}
@@ -78,13 +66,12 @@ const HeroCarousel: React.FC = () => {
 
             {/* Pagination Dots - Hidden when only one slide */}
             {heroSlides.length > 1 && (
-                <div className="flex justify-end gap-3 mt-4 pr-6 max-w-5xl mx-auto">
+                <div className="flex justify-end gap-3 mt-4 pr-6">
                     {heroSlides.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => scrollTo(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${selectedIndex === index ? 'bg-primary w-8' : 'bg-foreground/30'
-                                }`}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${selectedIndex === index ? 'bg-primary w-8' : 'bg-foreground/30'}`}
                             aria-label={`Ir al slide ${index + 1}`}
                         />
                     ))}
