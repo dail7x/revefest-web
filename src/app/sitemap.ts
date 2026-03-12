@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import artists from '@/data/artists.json';
+import artists from '@/data/artistas.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://revefest.com';
@@ -57,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified,
     priority: 0.7,
     changeFrequency: 'weekly',
-    images: artist.heroImage ? [`${baseUrl}${artist.heroImage}`] : undefined,
+    images: artist.images.hero ? [`${baseUrl}${artist.images.hero}`] : undefined,
   }));
   
   return [...staticUrls, ...artistUrls];

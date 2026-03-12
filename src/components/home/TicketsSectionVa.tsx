@@ -7,7 +7,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { Ticket } from 'lucide-react';
 import { useCallback, useState, useEffect } from 'react';
 
-const EntradesSectionVa: React.FC = () => {
+const TicketsSectionVa: React.FC = () => {
     const tiers = [
         {
             name: 'Entrada General',
