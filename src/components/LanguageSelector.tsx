@@ -30,7 +30,7 @@ export default function LanguageSelector({ mobile = false }: LanguageSelectorPro
   // Mobile: show both options inline
   if (mobile) {
     return (
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 hidden">
         <span className="text-xl font-bold uppercase">{t('nav.language')}</span>
         <div className="flex gap-4 pl-4">
           <button
@@ -58,7 +58,7 @@ export default function LanguageSelector({ mobile = false }: LanguageSelectorPro
   // Desktop: hover dropdown
   return (
     <div 
-      className="relative group"
+      className="relative group hidden"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
