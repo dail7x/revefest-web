@@ -1,0 +1,68 @@
+{
+  "name": "REVE FEST 2026",
+  "tagline": "El único festival de música urbana solidario",
+  "description": "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. Más de 10h de música en el Roig Arena con María Becerra, RVFV, La Zowi y más.",
+  "date": {
+    "start": "2026-07-16T13:00:00+02:00",
+    "end": "2026-07-17T00:00:00+02:00",
+    "doors": "13:00",
+    "show": "14:00"
+  },
+  "location": {
+    "name": "Roig Arena",
+    "address": {
+      "street": "Avenida de las Cortes Valencianas, 90",
+      "city": "Valencia",
+      "region": "Comunidad Valenciana",
+      "postalCode": "46015",
+      "country": "ES"
+    },
+    "coordinates": {
+      "lat": 39.4699,
+      "lng": -0.3763
+    }
+  },
+  "venue": {
+    "name": "Roig Arena",
+    "capacity": 15000,
+    "indoor": true
+  },
+  "tickets": {
+    "url": "https://revefest.com/entradas",
+    "startingPrice": 49.50,
+    "currency": "EUR",
+    "onSaleFrom": "2025-01-01T00:00:00+02:00",
+    "types": [
+      {
+        "name": "Entrada General Pista",
+        "price": 49.50,
+        "color": "#fc56ae"
+      },
+      {
+        "name": "Entrada General Grada",
+        "price": 49.50,
+        "color": "#ffff00"
+      }
+    ]
+  },
+  "organizer": {
+    "name": "REVE FEST",
+    "url": "https://revefest.com",
+    "logo": "/apple-icon.png",
+    "social": {
+      "instagram": "https://instagram.com/revefest",
+      "tiktok": "https://tiktok.com/@revefest",
+      "facebook": "https://facebook.com/revefest",
+      "youtube": "https://youtube.com/@revefest"
+    }
+  },
+  "images": {
+    "hero": "/images/artists/Hero/bannerweb_general.webp",
+    "og": "/images/artists/Hero/bannerweb_general.webp",
+    "logo": "/apple-icon.png"
+  },
+  "seo": {
+    "keywords": ["festival", "música urbana", "Valencia", "María Becerra", "RVFV", "2026", "concierto", "Roig Arena"],
+    "themeColor": "#fc56ae"
+  }
+}
