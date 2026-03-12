@@ -48,7 +48,7 @@
   "organizer": {
     "name": "REVE FEST",
     "url": "https://revefest.com",
-    "logo": "/apple-icon.png",
+    "logo": "/logo.png",
     "social": {
       "instagram": "https://instagram.com/revefest",
       "tiktok": "https://tiktok.com/@revefest",
@@ -59,7 +59,7 @@
   "images": {
     "hero": "/images/artists/Hero/bannerweb_general.webp",
     "og": "/images/artists/Hero/bannerweb_general.webp",
-    "logo": "/apple-icon.png"
+    "logo": "/logo.png"
   },
   "seo": {
     "keywords": ["festival", "música urbana", "Valencia", "María Becerra", "RVFV", "2026", "concierto", "Roig Arena"],
