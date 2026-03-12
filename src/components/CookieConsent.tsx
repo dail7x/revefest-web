@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 const COOKIE_CONSENT_KEY = "revefest-cookie-consent";
 
@@ -13,6 +14,7 @@ interface CookieConsentProps {
 export default function CookieConsent({ variant = "floating" }: CookieConsentProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setIsMounted(true);
@@ -49,12 +51,12 @@ export default function CookieConsent({ variant = "floating" }: CookieConsentPro
             <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
                 <p className="text-white/90 text-sm leading-relaxed">
-                  Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y, con tu consentimiento, cookies de análisis para mejorar tu experiencia.{" "}
+                  {t('cookie.text')}{" "}
                   <Link
                     href="/politica-cookies"
                     className="text-[#fc56ae] hover:text-[#fd7ac0] underline underline-offset-2 transition-colors"
                   >
-                    Ver política
+                    {t('cookie.more')}
                   </Link>
                 </p>
               </div>
@@ -63,13 +65,13 @@ export default function CookieConsent({ variant = "floating" }: CookieConsentPro
                   onClick={handleDecline}
                   className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors"
                 >
-                  Rechazar
+                  {t('cookie.reject')}
                 </button>
                 <button
                   onClick={handleAccept}
                   className="px-5 py-2.5 bg-[#fc56ae] hover:bg-[#fd7ac0] text-white text-sm font-medium rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
                 >
-                  Aceptar
+                  {t('cookie.accept')}
                 </button>
               </div>
             </div>
@@ -95,12 +97,12 @@ export default function CookieConsent({ variant = "floating" }: CookieConsentPro
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <div className="flex-1 text-center sm:text-left">
                   <p className="text-white/90 text-sm leading-relaxed">
-                    Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y, con tu consentimiento, cookies de análisis para mejorar tu experiencia.{" "}
+                    {t('cookie.text')}{" "}
                     <Link
                       href="/politica-cookies"
                       className="text-[#fc56ae] hover:text-[#fd7ac0] underline underline-offset-2 transition-colors"
                     >
-                      Ver política
+                      {t('cookie.more')}
                     </Link>
                   </p>
                 </div>
@@ -109,13 +111,13 @@ export default function CookieConsent({ variant = "floating" }: CookieConsentPro
                     onClick={handleDecline}
                     className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors"
                   >
-                    Rechazar
+                    {t('cookie.reject')}
                   </button>
                   <button
                     onClick={handleAccept}
                     className="px-5 py-2.5 bg-[#fc56ae] hover:bg-[#fd7ac0] text-white text-sm font-medium rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
                   >
-                    Aceptar
+                    {t('cookie.accept')}
                   </button>
                 </div>
               </div>

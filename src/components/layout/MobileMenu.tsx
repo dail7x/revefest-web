@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import artistasData from '@/data/artistas.json';
+import LanguageSelector from '@/components/LanguageSelector';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   return (
     <AnimatePresence>
       {isOpen && (
@@ -54,7 +57,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
             <nav className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <span className="text-xl font-bold text-foreground/40">ARTISTAS</span>
+                <span className="text-xl font-bold text-foreground/40">{t('nav.artists')}</span>
                 <div className="flex flex-col gap-3 pl-4">
                   {artistasData
                     .sort((a, b) => a.order - b.order)
@@ -76,8 +79,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
                 className="text-xl font-bold hover:text-primary transition-colors"
               >
-                INFO
+                {t('nav.info')}
               </Link>
+
+              <LanguageSelector mobile />
             </nav>
 
             <div className="mt-auto pt-8 border-t border-gray-100 italic text-sm text-foreground/60">

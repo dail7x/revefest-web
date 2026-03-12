@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://revefest.com"),
@@ -46,12 +47,14 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col">
         <GoogleAnalytics />
         <StructuredData />
-        <Header />
+        <LanguageProvider>
+          <Header />
         <main className="flex-grow pt-[80px] sm:pt-[100px]">
           {children}
         </main>
         <Footer />
         <CookieConsent variant="floating" />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -12,7 +12,8 @@
             "cartel": "/images/artists/Carteles/Cartel_MARIA_REVEFEST.webp",
             "hero": "/images/artists/Hero/Maria_Becerra_Hero.png",
             "pagina": "/images/artists/Pagina/Maria_Becerra_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     },
     {
         "id": 2,
@@ -27,7 +28,8 @@
             "cartel": "/images/artists/Carteles/Cartel_RVFV_REVEFEST.webp",
             "hero": "/images/artists/Hero/RVFV_Hero.png",
             "pagina": "/images/artists/Pagina/RVFV_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     },
     {
         "id": 3,
@@ -42,7 +44,8 @@
             "cartel": "/images/artists/Carteles/Cartel_zowi_REVEFEST.webp",
             "hero": "/images/artists/Hero/La_Zowi_Hero.png",
             "pagina": "/images/artists/Pagina/La_Zowi_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     },
     {
         "id": 4,
@@ -57,7 +60,8 @@
             "cartel": "/images/artists/Carteles/Cartel_KIDD_REVEFEST.webp",
             "hero": "/images/artists/Hero/Kid_Voodoo_Hero.png",
             "pagina": "/images/artists/Pagina/Kid_Voodoo_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     },
     {
         "id": 5,
@@ -72,7 +76,8 @@
             "cartel": "/images/artists/Carteles/Cartel_L0RNA_REVEFEST.webp",
             "hero": "/images/artists/Hero/Lorna_Hero.png",
             "pagina": "/images/artists/Pagina/Lorna_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     },
     {
         "id": 6,
@@ -87,6 +92,7 @@
             "cartel": "/images/artists/Carteles/Cartel_CMARI_REVEFEST.webp",
             "hero": "/images/artists/Hero/C_Mari_Hero.png",
             "pagina": "/images/artists/Pagina/C_Mari_Foto_Web_artista.webp"
-        }
+        },
+        "bioVa": ""
     }
 ]

@@ -6,12 +6,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import artistasData from '@/data/artistas.json';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ArtistaPage = () => {
     const params = useParams();
     const router = useRouter();
     const slug = params?.slug as string;
     const [isSticky, setIsSticky] = useState(false);
+    const { lang } = useLanguage();
 
     const artista = artistasData.find((a) => a.slug === slug);
 
@@ -27,7 +29,7 @@ const ArtistaPage = () => {
     if (!artista) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <p className="text-xl uppercase font-bold text-black">Artista no encontrado</p>
+                <p className="text-xl uppercase font-bold text-black">{lang === 'va' ? 'Artista no trobat' : 'Artista no encontrado'}</p>
             </div>
         );
     }
@@ -120,7 +122,7 @@ const ArtistaPage = () => {
                         {/* Column 1: Biography */}
                         <div className="flex flex-col gap-4">
                             <div className="flex flex-col gap-4 text-[14px] md:text-[16px] leading-relaxed text-black font-normal text-justify">
-                                {artista.bio.split('\n\n').map((paragraph, index) => (
+                                {(lang === 'va' && artista.bioVa ? artista.bioVa : artista.bio).split('\n\n').map((paragraph, index) => (
                                     <p key={index}>{paragraph}</p>
                                 ))}
                             </div>

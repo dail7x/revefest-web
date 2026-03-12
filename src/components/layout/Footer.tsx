@@ -1,8 +1,12 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer: React.FC = () => {
+    const { t } = useLanguage();
     const sponsors = [
         { name: 'Músicos por la Salud', icon: '/images/Logos/Logo_Musicos_Por_La_Salud_Nuevo.webp' },
         { name: 'Roig Arena', icon: '/images/Logos/Logo_Roig_arena.webp' },
@@ -38,7 +42,7 @@ const Footer: React.FC = () => {
 
                 {/* 2. Social Media Section - Below logo */}
                 <div className="flex flex-col items-center gap-4 mb-12">
-                    <span className="text-xl font-normal tracking-tight">¡Sigue nuestras redes!</span>
+                    <span className="text-xl font-normal tracking-tight">{t('footer.follow')}</span>
                     <div className="flex items-center gap-6">
                         {socialLinks.map((social) => (
                             <Link
