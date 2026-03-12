@@ -20,7 +20,7 @@ const LineupText: React.FC = () => {
                             document.getElementById('lineup')?.scrollIntoView({ behavior: 'smooth' });
                         }}
                     >
-                        Lineup 
+                        {t('lineup.title')} 
                         <Image 
                             src="/images/destello.svg" 
                             alt="" 

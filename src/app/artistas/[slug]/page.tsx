@@ -13,7 +13,7 @@ const ArtistaPage = () => {
     const router = useRouter();
     const slug = params?.slug as string;
     const [isSticky, setIsSticky] = useState(false);
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
 
     const artista = artistasData.find((a) => a.slug === slug);
 
@@ -54,7 +54,7 @@ const ArtistaPage = () => {
                             >
                                 <ArrowLeft size={32} strokeWidth={2.5} />
                             </button>
-                            <h2 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black">Lineup</h2>
+                            <h2 className="text-[20pt] md:text-[28pt] font-black uppercase tracking-tighter text-black">{t('lineup.title')}</h2>
                             <Image 
                                 src="/images/destello.svg" 
                                 alt="" 
@@ -72,7 +72,7 @@ const ArtistaPage = () => {
                                 href="/entradas"
                                 className="bg-primary text-white py-3 px-6 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                             >
-                                ¡Compra ya desde 49,50€!
+                                {t('artist.cta')}
                             </Link>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ const ArtistaPage = () => {
                                 href="/entradas"
                                 className="w-full md:w-fit bg-primary text-white py-4 md:px-12 md:py-3 text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all text-center md:text-left block whitespace-nowrap"
                             >
-                                ¡Compra ya desde 49,50€!
+                                {t('artist.cta')}
                             </Link>
                         </div>
 

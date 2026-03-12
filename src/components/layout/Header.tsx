@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from './MobileMenu';
 import LanguageSelector from '@/components/LanguageSelector';
 import { usePathname, useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Marker = ({ className }: { className: string }) => (
     <span className={`absolute text-[6px] text-foreground leading-none ${className}`}>◆</span>
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+    const { t } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -76,21 +78,21 @@ const Header: React.FC = () => {
                             {/* Box 1: Always visible (Mobile & Desktop) */}
                             <BoxedInfo className="flex">
                                 <span className={`${isSticky ? 'text-[7pt] sm:text-[8.5pt]' : ''}`}>16.07.26</span>
-                                <span className={`font-normal opacity-80 ${isSticky ? 'text-[7pt] sm:text-[8.5pt]' : ''}`}>VALENCIA</span>
-                                <span className={`hidden sm:block ${isSticky ? 'text-[7pt] sm:text-[8.5pt]' : ''}`}>ROIG ARENA</span>
+                                <span className={`font-normal opacity-80 ${isSticky ? 'text-[7pt] sm:text-[8.5pt]' : ''}`}>{t('header.city')}</span>
+                                <span className={`hidden sm:block ${isSticky ? 'text-[7pt] sm:text-[8.5pt]' : ''}`}>{t('header.venue')}</span>
                             </BoxedInfo>
 
                             {/* Box 2: Only Large Screens, disappears when sticky on medium */}
                             <BoxedInfo className={`hidden lg:flex ${isSticky ? 'hidden xl:flex' : ''}`}>
-                                <span>+10 HORAS DE MÚSICA NONSTOP</span>
-                                <span className="font-normal opacity-80">2 ESCENARIOS</span>
-                                <span>1 PM - 12 PM</span>
+                                <span>{t('header.hours')}</span>
+                                <span className="font-normal opacity-80">{t('header.stages')}</span>
+                                <span>{t('header.time')}</span>
                             </BoxedInfo>
                         </div>
 
                         {/* Navigation - Hidden on mobile/tablet */}
                         <nav className="hidden xl:flex items-center gap-8 text-[11pt] font-normal uppercase tracking-wide">
-                            <Link href="/entradas" className="hover:text-primary transition-colors">Tickets</Link>
+                            <Link href="/entradas" className="hover:text-primary transition-colors">{t('nav.tickets')}</Link>
                             <button 
                                 onClick={() => {
                                     if (pathname !== '/') {
@@ -101,9 +103,9 @@ const Header: React.FC = () => {
                                 }}
                                 className="hover:text-primary transition-colors"
                             >
-                                ARTISTAS
+                                {t('nav.artists')}
                             </button>
-                            <Link href="/guia-de-compra" className="hover:text-primary transition-colors">Info</Link>
+                            <Link href="/guia-de-compra" className="hover:text-primary transition-colors">{t('nav.info')}</Link>
                             <LanguageSelector />
                         </nav>
 
@@ -122,7 +124,7 @@ const Header: React.FC = () => {
                                             href="/entradas"
                                             className="bg-primary text-white px-6 sm:px-8 py-2 md:py-2.5 text-[10pt] sm:text-[12pt] font-bold rounded-sm hover:bg-foreground transition-all uppercase shadow-sm"
                                         >
-                                            Tickets
+                                            {t('nav.tickets')}
                                         </Link>
                                     </motion.div>
                                 ) : (
@@ -137,7 +139,7 @@ const Header: React.FC = () => {
                                             href="/entradas"
                                             className="bg-primary text-white px-6 sm:px-8 py-2 text-[10pt] sm:text-[12pt] font-bold rounded-sm uppercase"
                                         >
-                                            Tickets
+                                            {t('nav.tickets')}
                                         </Link>
                                     </motion.div>
                                 )}

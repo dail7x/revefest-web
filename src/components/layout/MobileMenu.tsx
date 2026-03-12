@@ -43,7 +43,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
                 className="bg-primary text-white px-6 py-2.5 text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-foreground transition-colors"
               >
-                Tickets
+                {t('nav.tickets')}
               </Link>
               
               <button 
@@ -57,7 +57,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
             <nav className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <span className="text-xl font-bold text-foreground/40">{t('nav.artists')}</span>
+                <span className="text-xl font-bold uppercase">{t('nav.artists')}</span>
                 <div className="flex flex-col gap-3 pl-4">
                   {artistasData
                     .sort((a, b) => a.order - b.order)
@@ -66,7 +66,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                         key={artista.id}
                         href={`/artistas/${artista.slug}`}
                         onClick={onClose}
-                        className="text-lg font-light hover:text-primary transition-colors"
+                        className="text-lg font-light hover:text-primary transition-colors uppercase"
                       >
                         {artista.name}
                       </Link>
@@ -77,7 +77,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               <Link 
                 href="/guia-de-compra" 
                 onClick={onClose}
-                className="text-xl font-bold hover:text-primary transition-colors"
+                className="text-xl font-bold hover:text-primary transition-colors uppercase"
               >
                 {t('nav.info')}
               </Link>
@@ -85,7 +85,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               <LanguageSelector mobile />
             </nav>
 
-            <div className="mt-auto pt-8 border-t border-gray-100 italic text-sm text-foreground/60">
+            <div className="mt-auto pt-8 border-t border-gray-100 text-sm text-foreground/60 uppercase tracking-wide">
               16.07.26 • Valencia
             </div>
           </motion.div>

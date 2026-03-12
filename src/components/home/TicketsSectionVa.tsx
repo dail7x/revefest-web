@@ -10,22 +10,22 @@ import { useCallback, useState, useEffect } from 'react';
 const TicketsSectionVa: React.FC = () => {
     const tiers = [
         {
-            name: 'Entrada General',
-            title: 'Entrada General',
+            name: 'Entrade General',
+            title: 'Entrade General',
             badge: '¡Últimes entrades!\nVine al preu més baix.',
             description: 'Accés complet al REVE FEST en el Roig Arena (dijous 16 de juliol de 13h a 24h).',
             price: '49,50€',
-            categories: ['Pista General', 'Grada General'],
+            categories: ['Pista General', 'Graderia General'],
             buttonColor: 'bg-[#fc56ae]',
             textColor: 'text-white'
         },
         {
-            name: 'Front Stage',
-            title: '✦ Front Stage ✦',
+            name: 'Escenari Frontal',
+            title: '✦ Escenari Frontal ✦',
             badge: '¡Aforament limitat!\nÚltimes entrades.',
             description: 'Primera línia a l\'escenari principal del REVE FEST en el Roig Arena (dijous 16 de juliol de 13h a 24h).',
             price: '72€',
-            category: 'Front Stage',
+            category: 'Escenari Frontal',
             buttonColor: 'bg-[#ffff00]',
             textColor: 'text-black'
         },
@@ -130,7 +130,7 @@ const TicketsSectionVa: React.FC = () => {
                                         href="/entradas"
                                         className={`block w-full ${tier.buttonColor} ${tier.textColor} py-4 text-center font-bold text-lg tracking-wider uppercase transition-transform active:scale-95`}
                                     >
-                                        Comprar Entrada
+                                        Comprar Entrade
                                     </Link>
                                 </div>
                             </div>
@@ -148,7 +148,7 @@ const TicketsSectionVa: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-4 h-4 bg-[#ffff00]" />
-                                <span>Front Stage.</span>
+                                <span>Escenari Frontal.</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-4 h-4 bg-[#fc56ae]" />
@@ -224,14 +224,14 @@ const TicketsSectionVa: React.FC = () => {
                                     </div>
 
                                     <p className="text-[9pt] text-gray-400 italic mb-4">
-                                        * Gastos de gestión incluidos.
+                                        * Despeses de gestió incloses.
                                     </p>
 
                                     <Link
                                         href="/entradas"
                                         className={`block w-full ${tier.buttonColor} ${tier.textColor} py-4 text-center font-bold text-md tracking-wider uppercase active:scale-95`}
                                     >
-                                        Comprar Entrada
+                                        Comprar Entrade
                                     </Link>
                                 </div>
                             ))}
@@ -261,11 +261,11 @@ const TicketsSectionVa: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="w-5 h-5 bg-[#ffff00]" />
-                                <span>Front Stage.</span>
+                                <span>Escenari Frontal.</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="w-5 h-5 bg-[#fc56ae]" />
-                                <span>Entrada General.</span>
+                                <span>Entrade General.</span>
                             </div>
                         </div>
 
