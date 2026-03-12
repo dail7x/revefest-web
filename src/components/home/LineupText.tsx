@@ -4,9 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import artistasData from '@/data/artistas.json';
+import { useLanguage } from '@/context/LanguageContext';
 
-const LineupText: React.FC = () => {
+const {t('lineup.title')}Text: React.FC = () => {
     const artists = artistasData.sort((a, b) => a.order - b.order);
+    const { t } = useLanguage();
 
     return (
         <section id="lineup" className="container mx-auto px-6 py-4 md:py-8 scroll-mt-24">
@@ -72,7 +74,7 @@ const LineupText: React.FC = () => {
                         href="/guia-de-compra"
                         className="hidden md:inline-flex bg-black text-white px-8 py-3 text-sm font-bold rounded-sm hover:bg-foreground/80 transition-all w-fit tracking-wider uppercase"
                     >
-                        + INFORMACIÓN
+                        {t('lineup.moreInfo')}
                     </Link>
                 </div>
 
@@ -81,7 +83,7 @@ const LineupText: React.FC = () => {
                         href="/entradas"
                         className="flex-1 md:flex-none bg-primary text-white px-8 py-4 text-xl font-bold rounded-sm hover:bg-foreground transition-all text-center shadow-xl tracking-widest uppercase flex items-center justify-center min-h-[64px]"
                     >
-                        TICKETS
+                        {t('nav.tickets')}
                     </Link>
 
                     {/* Mobile Button */}
@@ -89,7 +91,7 @@ const LineupText: React.FC = () => {
                         href="/guia-de-compra"
                         className="flex-1 md:hidden bg-black text-white px-8 py-4 text-xl font-bold rounded-sm hover:bg-foreground/80 transition-all text-center tracking-widest uppercase flex items-center justify-center min-h-[64px]"
                     >
-                        + INFO
+                        {t('lineup.moreInfoMobile')}
                     </Link>
                 </div>
             </div>
