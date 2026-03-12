@@ -4,9 +4,13 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://revefest.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "REVE FEST 2026 | Festival Musical Solidario en Valencia | María Becerra en el Roig Arena",
   description: "El único festival de música urbana solidario. Todo el beneficio va a microconciertos® para salud mental. 16 julio 2026, Roig Arena Valencia.",
   icons: {
@@ -41,6 +45,7 @@ export default function RootLayout({
     <html lang="es">
       <body className="antialiased min-h-screen flex flex-col">
         <GoogleAnalytics />
+        <StructuredData />
         <Header />
         <main className="flex-grow pt-[80px] sm:pt-[100px]">
           {children}
