@@ -6,7 +6,7 @@ import Image from 'next/image';
 import artistasData from '@/data/artistas.json';
 import { useLanguage } from '@/context/LanguageContext';
 
-const {t('lineup.title')}Text: React.FC = () => {
+const LineupText: React.FC = () => {
     const artists = artistasData.sort((a, b) => a.order - b.order);
     const { t } = useLanguage();
 
