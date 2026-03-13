@@ -165,7 +165,7 @@ const GuiaDeCompraPage = () => {
                                 href="/entradas"
                                 className="bg-primary text-white py-3 px-8 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm whitespace-nowrap"
                             >
-                                ¡Compra ya desde 49,50€!
+                                ¡Compra ya desde 45€!
                             </Link>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ const GuiaDeCompraPage = () => {
                             href="/entradas"
                             className="w-full md:w-auto bg-primary text-white py-3 px-10 text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:brightness-110 transition-all shadow-sm"
                         >
-                            ¡Compra ya desde 49,50€!
+                            ¡Compra ya desde 45€!
                         </Link>
                     </div>
                 </div>

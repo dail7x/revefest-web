@@ -29,18 +29,18 @@
   },
   "tickets": {
     "url": "https://revefest.com/entradas",
-    "startingPrice": 49.50,
+    "startingPrice": 45,
     "currency": "EUR",
     "onSaleFrom": "2025-01-01T00:00:00+02:00",
     "types": [
       {
         "name": "Entrada General Pista",
-        "price": 49.50,
+        "price": 45,
         "color": "#fc56ae"
       },
       {
         "name": "Entrada General Grada",
-        "price": 49.50,
+        "price": 45,
         "color": "#ffff00"
       }
     ]

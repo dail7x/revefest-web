@@ -3,6 +3,7 @@
 import Script from "next/script";
 
 const GTM_ID = "GT-NNXMX3RH";
+const GA_ID = "G-P32C918QET";
 
 export default function GoogleAnalytics() {
   return (
@@ -18,6 +19,37 @@ export default function GoogleAnalytics() {
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${GTM_ID}');
+          `,
+        }}
+      />
+
+      {/* Google Analytics 4 with Consent Mode */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script
+        id="ga-consent"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            
+            // Default consent - denied until user accepts
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'analytics_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'wait_for_update': 500
+            });
+            
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });
           `,
         }}
       />
