@@ -7,7 +7,7 @@ import LineupGrid from '@/components/home/LineupGrid';
 import LineupText from '@/components/home/LineupText';
 import TicketsSection from '@/components/home/TicketsSection';
 import Newsletter from '@/components/home/Newsletter';
-import CookieConsent from '@/components/CookieConsent';
+
 
 export default function Home() {
   return (
@@ -29,8 +29,7 @@ export default function Home() {
         <LineupGrid />
       </div>
 
-      {/* COOKIE CONSENT - Inline entre Lineup y Tickets */}
-      <CookieConsent variant="inline" />
+      
 
       {/* SECCIÓN 5: TICKETS (Tiers + Mapa) - FEAT-008 */}
       <TicketsSection />

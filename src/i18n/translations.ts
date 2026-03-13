@@ -12,7 +12,7 @@ export const translations = {
     'hero.date': '16.07.26 • Valencia • Roig Arena',
     'hero.hours': '+10h música • 2 Escenarios • 1PM-12PM',
     'tickets.buy': 'Comprar entradas',
-    'tickets.from': 'desde 49,50€',
+    'tickets.from': 'desde 45€',
     'lineup.title': 'Lineup',
     'lineup.moreInfo': '+ INFORMACIÓN',
     'lineup.moreInfoMobile': '+ INFO',
@@ -32,7 +32,7 @@ export const translations = {
     'tickets.categoryPista': 'Pista General',
     'tickets.categoryGrada': 'Grada General',
     'tickets.seatMap': 'Guía de asientos',
-    'artist.cta': '¡Compra ya desde 49,50€!',
+    'artist.cta': '¡Compra ya desde 45€!',
     'artist.notFound': 'Artista no encontrado',
   },
   va: {
@@ -48,7 +48,7 @@ export const translations = {
     'hero.date': '16.07.26 • València • Roig Arena',
     'hero.hours': '+10h música • 2 Escenaris • 13h-00h',
     'tickets.buy': 'Comprar entrades',
-    'tickets.from': 'des de 49,50€',
+    'tickets.from': 'des de 45€',
     'lineup.title': 'Cartell',
     'lineup.moreInfo': '+ INFORMACIÓ',
     'lineup.moreInfoMobile': '+ INFO',
@@ -68,7 +68,7 @@ export const translations = {
     'tickets.categoryPista': 'Pista General',
     'tickets.categoryGrada': 'Grada General',
     'tickets.seatMap': 'Guia d\'asientos',
-    'artist.cta': '¡Compra ja des de 49,50€!',
+    'artist.cta': '¡Compra ja des de 45€!',
     'artist.notFound': 'Artista no trobat',
   }
 };

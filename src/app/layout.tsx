@@ -53,7 +53,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <CookieConsent variant="floating" />
+        <CookieConsent />
         </LanguageProvider>
       </body>
     </html>

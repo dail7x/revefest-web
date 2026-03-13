@@ -14,7 +14,7 @@ const TicketsSectionEs: React.FC = () => {
             title: 'Entrada General',
             badge: '¡Últimas entradas!\nVente al precio más bajo.',
             description: 'Acceso completo al REVE FEST en el Roig Arena (jueves 16 de julio de 13h a 24h).',
-            price: '49,50€',
+            price: '45€',
             categories: ['Pista General', 'Grada General'],
             buttonColor: 'bg-[#fc56ae]',
             textColor: 'text-white'
@@ -24,7 +24,7 @@ const TicketsSectionEs: React.FC = () => {
             title: '✦ Front Stage ✦',
             badge: '¡Aforo limitado!\nÚltimas entradas.',
             description: 'Primera linea al escenario principal del REVE FEST en el Roig Arena (jueves 16 de julio de 13h a 24h).',
-            price: '72€',
+            price: '75€',
             category: 'Front Stage',
             buttonColor: 'bg-[#ffff00]',
             textColor: 'text-black'
@@ -123,7 +123,7 @@ const TicketsSectionEs: React.FC = () => {
                                     </div>
 
                                     <p className="text-[10pt] text-gray-400 italic mb-6">
-                                        * Gastos de gestión incluidos.
+                                        * Gastos de gestión no incluidos.
                                     </p>
 
                                     <Link
@@ -224,7 +224,7 @@ const TicketsSectionEs: React.FC = () => {
                                     </div>
 
                                     <p className="text-[9pt] text-gray-400 italic mb-4">
-                                        * Gastos de gestión incluidos.
+                                        * Gastos de gestión no incluidos.
                                     </p>
 
                                     <Link

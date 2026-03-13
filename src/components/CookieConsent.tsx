@@ -1,130 +1,147 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
+import { useEffect } from 'react';
+import * as CookieConsent from 'vanilla-cookieconsent';
+import 'vanilla-cookieconsent/dist/cookieconsent.css';
 
-const COOKIE_CONSENT_KEY = "revefest-cookie-consent";
-
-interface CookieConsentProps {
-  variant?: "inline" | "floating";
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
+  }
 }
 
-export default function CookieConsent({ variant = "floating" }: CookieConsentProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const { t } = useLanguage();
-
+export default function CookieConsentComponent() {
   useEffect(() => {
-    setIsMounted(true);
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (!consent) {
-      setIsVisible(true);
-    }
+    // Configuración de Google Consent Mode v2 - default denied
+    window.gtag?.('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500,
+    });
+
+    CookieConsent.run({
+      categories: {
+        necessary: {
+          enabled: true,
+          readOnly: true,
+        },
+        analytics: {
+          enabled: false,
+          readOnly: false,
+          autoClear: {
+            cookies: [
+              { name: /^_ga/ },
+              { name: '_gid' },
+            ],
+          },
+          services: {
+            ga: {
+              label: 'Google Analytics',
+              onAccept: () => {
+                window.gtag?.('consent', 'update', {
+                  analytics_storage: 'granted',
+                });
+              },
+              onReject: () => {
+                window.gtag?.('consent', 'update', {
+                  analytics_storage: 'denied',
+                });
+              },
+            },
+          },
+        },
+        marketing: {
+          enabled: false,
+          readOnly: false,
+          services: {
+            googleAds: {
+              label: 'Google Ads',
+              onAccept: () => {
+                window.gtag?.('consent', 'update', {
+                  ad_storage: 'granted',
+                  ad_user_data: 'granted',
+                  ad_personalization: 'granted',
+                });
+              },
+              onReject: () => {
+                window.gtag?.('consent', 'update', {
+                  ad_storage: 'denied',
+                  ad_user_data: 'denied',
+                  ad_personalization: 'denied',
+                });
+              },
+            },
+          },
+        },
+      },
+
+      language: {
+        default: 'es',
+        translations: {
+          es: {
+            consentModal: {
+              title: 'Utilizamos cookies',
+              description: 'Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y, con tu consentimiento, cookies de análisis para mejorar tu experiencia. Consulta nuestra <a href="/politica-cookies">Política de Cookies</a>.',
+              acceptAllBtn: 'Aceptar todas',
+              acceptNecessaryBtn: 'Rechazar todas',
+              showPreferencesBtn: 'Personalizar',
+            },
+            preferencesModal: {
+              title: 'Configuración de cookies',
+              acceptAllBtn: 'Aceptar todas',
+              acceptNecessaryBtn: 'Rechazar no esenciales',
+              savePreferencesBtn: 'Guardar preferencias',
+              closeIconLabel: 'Cerrar',
+              sections: [
+                {
+                  title: 'Uso de cookies',
+                  description: 'Utilizamos cookies para mejorar tu experiencia de navegación. Puedes gestionar tus preferencias a continuación.',
+                },
+                {
+                  title: 'Cookies necesarias',
+                  description: 'Estas cookies son esenciales para el funcionamiento del sitio web y no pueden desactivarse.',
+                  linkedCategory: 'necessary',
+                },
+                {
+                  title: 'Cookies de análisis',
+                  description: 'Estas cookies nos ayudan a entender cómo interactúan los visitantes con el sitio web.',
+                  linkedCategory: 'analytics',
+                },
+                {
+                  title: 'Cookies de marketing',
+                  description: 'Estas cookies se utilizan para mostrar anuncios personalizados.',
+                  linkedCategory: 'marketing',
+                },
+              ],
+            },
+          },
+        },
+      },
+
+      guiOptions: {
+        consentModal: {
+          layout: 'cloud',
+          position: 'bottom center',
+          equalWeightButtons: true,
+          flipButtons: false,
+        },
+        preferencesModal: {
+          layout: 'box',
+        },
+      },
+
+      onFirstConsent: ({ cookie }) => {
+        console.log('First consent given:', cookie);
+      },
+
+      onConsent: ({ cookie }) => {
+        console.log('Consent updated:', cookie);
+      },
+    });
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
-    setIsVisible(false);
-  };
-
-  const handleDecline = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, "declined");
-    setIsVisible(false);
-  };
-
-  if (!isMounted) return null;
-
-  // Inline variant for home page (between Lineup and Tickets)
-  if (variant === "inline") {
-    return (
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="w-full bg-black/90 backdrop-blur-md border-t border-white/10 py-6 px-4 sm:px-6 lg:px-8"
-          >
-            <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-center sm:text-left">
-                <p className="text-white/90 text-sm leading-relaxed">
-                  {t('cookie.text')}{" "}
-                  <Link
-                    href="/politica-cookies"
-                    className="text-[#fc56ae] hover:text-[#fd7ac0] underline underline-offset-2 transition-colors"
-                  >
-                    {t('cookie.more')}
-                  </Link>
-                </p>
-              </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <button
-                  onClick={handleDecline}
-                  className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t('cookie.reject')}
-                </button>
-                <button
-                  onClick={handleAccept}
-                  className="px-5 py-2.5 bg-[#fc56ae] hover:bg-[#fd7ac0] text-white text-sm font-medium rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
-                >
-                  {t('cookie.accept')}
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    );
-  }
-
-  // Floating variant for other pages (slide up from bottom)
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 100 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
-        >
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-black/85 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50 p-5 sm:p-6">
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <div className="flex-1 text-center sm:text-left">
-                  <p className="text-white/90 text-sm leading-relaxed">
-                    {t('cookie.text')}{" "}
-                    <Link
-                      href="/politica-cookies"
-                      className="text-[#fc56ae] hover:text-[#fd7ac0] underline underline-offset-2 transition-colors"
-                    >
-                      {t('cookie.more')}
-                    </Link>
-                  </p>
-                </div>
-                <div className="flex items-center gap-3 shrink-0">
-                  <button
-                    onClick={handleDecline}
-                    className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors"
-                  >
-                    {t('cookie.reject')}
-                  </button>
-                  <button
-                    onClick={handleAccept}
-                    className="px-5 py-2.5 bg-[#fc56ae] hover:bg-[#fd7ac0] text-white text-sm font-medium rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
-                  >
-                    {t('cookie.accept')}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  return null;
 }
