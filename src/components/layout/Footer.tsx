@@ -81,8 +81,8 @@ const Footer: React.FC = () => {
                 <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-[10pt] uppercase tracking-tight font-medium">
                     <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2">
                         <Link href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</Link>
-                        <Link href="/politica-privacidad" className="hover:text-primary transition-colors">Política de Privacidad</Link>
                         <Link href="/politica-cookies" className="hover:text-primary transition-colors">Política de Cookies (UE)</Link>
+                        <Link href="/terminos-condiciones" className="hover:text-primary transition-colors">Términos y Condiciones</Link>
                     </div>
                     <div className="text-foreground/60">
                         REVE FEST 2026
