@@ -18,15 +18,6 @@ export default function CookieConsentComponent() {
   const [showPreferences, setShowPreferences] = useState(false);
 
   useEffect(() => {
-    // Google Consent Mode v2 - default denied
-    window.gtag?.('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500,
-    });
-
     // Check if user has already consented
     const consent = localStorage.getItem(COOKIE_KEY);
     if (!consent) {

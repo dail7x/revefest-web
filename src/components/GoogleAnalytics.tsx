@@ -38,12 +38,24 @@ export default function GoogleAnalytics() {
             window.gtag = gtag;
             
             // Default consent - denied until user accepts
+            // wait_for_update: 2000 gives time for the consent banner to load
             gtag('consent', 'default', {
               'ad_storage': 'denied',
               'analytics_storage': 'denied',
               'ad_user_data': 'denied',
               'ad_personalization': 'denied',
-              'wait_for_update': 500
+              'wait_for_update': 2000
+            });
+            
+            // Also push to dataLayer for GTM
+            window.dataLayer.push({
+              'event': 'default_consent',
+              'consent': {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+              }
             });
             
             gtag('js', new Date());
