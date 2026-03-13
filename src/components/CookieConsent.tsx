@@ -12,27 +12,44 @@ declare global {
 
 const COOKIE_KEY = 'revefest-cookie-consent';
 
+// Global function to open preferences (called from footer/policy page)
+export function openCookiePreferences() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('open-cookie-preferences'));
+  }
+}
+
 export default function CookieConsentComponent() {
   const { t } = useLanguage();
   const [showBanner, setShowBanner] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Listen for external open request
+    const handleOpenPreferences = () => setShowPreferences(true);
+    window.addEventListener('open-cookie-preferences', handleOpenPreferences);
+
     // Check if user has already consented
     const consent = localStorage.getItem(COOKIE_KEY);
     if (!consent) {
       setShowBanner(true);
+      // Small delay for animation
+      setTimeout(() => setIsVisible(true), 100);
     } else {
       try {
-        // Apply saved consent
         const { analytics, marketing } = JSON.parse(consent);
         updateConsent(analytics, marketing);
       } catch {
-        // Invalid JSON, clear and show banner
         localStorage.removeItem(COOKIE_KEY);
         setShowBanner(true);
+        setTimeout(() => setIsVisible(true), 100);
       }
     }
+
+    return () => {
+      window.removeEventListener('open-cookie-preferences', handleOpenPreferences);
+    };
   }, []);
 
   const updateConsent = (analytics: boolean, marketing: boolean) => {
@@ -44,25 +61,44 @@ export default function CookieConsentComponent() {
     });
   };
 
+  const trackConsentEvent = (action: string) => {
+    window.gtag?.('event', 'cookie_consent', {
+      event_category: 'engagement',
+      event_label: action,
+    });
+  };
+
   const handleAcceptAll = () => {
     localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: true, marketing: true }));
     updateConsent(true, true);
-    setShowBanner(false);
-    setShowPreferences(false);
+    trackConsentEvent('accept_all');
+    hideBanner();
   };
 
   const handleRejectAll = () => {
     localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: false, marketing: false }));
     updateConsent(false, false);
-    setShowBanner(false);
-    setShowPreferences(false);
+    trackConsentEvent('reject_all');
+    hideBanner();
   };
 
   const handleSavePreferences = (analytics: boolean, marketing: boolean) => {
     localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics, marketing }));
     updateConsent(analytics, marketing);
-    setShowBanner(false);
-    setShowPreferences(false);
+    trackConsentEvent(analytics || marketing ? 'accept_custom' : 'reject_all');
+    hideBanner();
+  };
+
+  const hideBanner = () => {
+    setIsVisible(false);
+    setTimeout(() => {
+      setShowBanner(false);
+      setShowPreferences(false);
+    }, 300);
+  };
+
+  const handleOpenPreferences = () => {
+    setShowPreferences(true);
   };
 
   if (!showBanner && !showPreferences) return null;
@@ -71,7 +107,11 @@ export default function CookieConsentComponent() {
     <>
       {/* Main Banner */}
       {showBanner && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-[700px]">
+        <div 
+          className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-[700px] transition-all duration-300 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
           <div className="bg-[#1a1a1a] rounded-2xl shadow-2xl p-6 flex flex-col md:flex-row items-center gap-4">
             {/* Text */}
             <div className="flex-1 text-white text-sm leading-relaxed">
@@ -84,7 +124,7 @@ export default function CookieConsentComponent() {
             {/* Buttons */}
             <div className="flex flex-row gap-2 shrink-0">
               <button
-                onClick={() => setShowPreferences(true)}
+                onClick={handleOpenPreferences}
                 className="px-4 py-2 text-sm font-semibold text-white border-[1.5px] border-[#FC56AE] rounded-md hover:bg-[#FC56AE]/10 transition-colors"
               >
                 {t('cookie.customize')}
@@ -110,7 +150,7 @@ export default function CookieConsentComponent() {
       {showPreferences && (
         <PreferencesModal
           t={t}
-          onClose={() => setShowPreferences(false)}
+          onClose={hideBanner}
           onSave={handleSavePreferences}
           onAcceptAll={handleAcceptAll}
           onRejectAll={handleRejectAll}
@@ -129,16 +169,58 @@ interface PreferencesModalProps {
 }
 
 function PreferencesModal({ t, onClose, onSave, onAcceptAll, onRejectAll }: PreferencesModalProps) {
-  const [analytics, setAnalytics] = useState(false);
-  const [marketing, setMarketing] = useState(false);
+  // Load saved preferences
+  const [analytics, setAnalytics] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const consent = localStorage.getItem(COOKIE_KEY);
+    if (!consent) return false;
+    try {
+      const { analytics } = JSON.parse(consent);
+      return analytics || false;
+    } catch {
+      return false;
+    }
+  });
+  
+  const [marketing, setMarketing] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const consent = localStorage.getItem(COOKIE_KEY);
+    if (!consent) return false;
+    try {
+      const { marketing } = JSON.parse(consent);
+      return marketing || false;
+    } catch {
+      return false;
+    }
+  });
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 10);
+  }, []);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 300);
+  };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4">
-      <div className="bg-[#1a1a1a] rounded-2xl w-full max-w-[500px] max-h-[90vh] overflow-y-auto">
+    <div 
+      className={`fixed inset-0 z-[60] flex items-center justify-center p-4 transition-opacity duration-300 ${
+        isVisible ? 'bg-black/50 opacity-100' : 'bg-black/0 opacity-0'
+      }`}
+      onClick={(e) => e.target === e.currentTarget && handleClose()}
+    >
+      <div 
+        className={`bg-[#1a1a1a] rounded-2xl w-full max-w-[500px] max-h-[90vh] overflow-y-auto transition-all duration-300 ${
+          isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#333]">
           <h2 className="text-xl font-bold text-white">{t('cookie.preferencesTitle')}</h2>
-          <button onClick={onClose} className="text-white hover:text-[#FC56AE] text-2xl">
+          <button onClick={handleClose} className="text-white hover:text-[#FC56AE] text-2xl">
             ×
           </button>
         </div>

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import { openCookiePreferences } from '@/components/CookieConsent';
 
 export default function PoliticaCookiesPage() {
     return (
@@ -201,6 +203,12 @@ export default function PoliticaCookiesPage() {
                     <p>
                         Puedes modificar tus preferencias en cualquier momento utilizando la herramienta de configuración de cookies disponible en el sitio web.
                     </p>
+                    <button
+                        onClick={openCookiePreferences}
+                        className="mt-4 px-6 py-3 bg-[#FC56AE] text-white font-semibold rounded-md hover:bg-[#e04a9d] transition-colors"
+                    >
+                        Configurar preferencias de cookies
+                    </button>
 
                     <h2 className="text-2xl font-bold uppercase mt-8 text-black">8. Gestión y eliminación de cookies</h2>
                     <p>

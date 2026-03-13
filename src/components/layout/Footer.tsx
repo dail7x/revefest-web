@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+import { openCookiePreferences } from '@/components/CookieConsent';
 
 const Footer: React.FC = () => {
     const { t } = useLanguage();
@@ -83,6 +84,12 @@ const Footer: React.FC = () => {
                         <Link href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</Link>
                         <Link href="/politica-privacidad" className="hover:text-primary transition-colors">Política de Privacidad</Link>
                         <Link href="/politica-cookies" className="hover:text-primary transition-colors">Política de Cookies (UE)</Link>
+                        <button 
+                            onClick={openCookiePreferences}
+                            className="hover:text-primary transition-colors"
+                        >
+                            {t('cookie.settings')}
+                        </button>
                     </div>
                     <div className="text-foreground/60">
                         REVE FEST 2026
